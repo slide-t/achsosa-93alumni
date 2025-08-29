@@ -200,12 +200,31 @@
       z-index: 1200;
     }
     #scrollTop:hover { background: var(--hover-color); }
+ .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* spacing between image and text */
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 60%; /* gives that circular-ish look */
+  object-fit: cover; /* ensures image fits nicely */
+}
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo"> ACHSOSA '93 SET<i class="fas fa-graduation-cap"></i></div>
+   <!-- <div class="logo"> ACHSOSA '93 SET<i class="fas fa-graduation-cap"></i></div>-->
+    <div class="logo">
+  <img src="img/logo.png" alt="ACHSOSA Logo" class="logo-img">
+  ACHSOSA '93 SET <i class="fas fa-graduation-cap"></i>
+</div>
     
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="navLinks">
