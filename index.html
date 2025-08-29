@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACHSOSA '93 SET Alumni</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* === Variables === */
+    :root {
+      --bg-color: #fff;
+      --text-color: #000;
+      --accent-color: #000;
+      --card-bg: #f4f4f4;
+      --hover-color: #555;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+    }
+
+    /* === Header === */
+    header {
+      background-color: var(--accent-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* === Navigation === */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-direction: column; /* stacked on mobile */
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: slideIn 0.5s forwards;
+    }
+
+    nav a:hover { color: var(--hover-color); }
+
+    nav a:nth-child(1) { animation-delay: 0.1s; }
+    nav a:nth-child(2) { animation-delay: 0.2s; }
+    nav a:nth-child(3) { animation-delay: 0.3s; }
+    nav a:nth-child(4) { animation-delay: 0.4s; }
+    nav a:nth-child(5) { animation-delay: 0.5s; }
+    nav a:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes slideIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Desktop nav */
+    @media (min-width: 768px) {
+      nav { flex-direction: row; }
+      nav a { opacity: 1; transform: translateX(0); animation: none; }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color: var(--accent-color);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+      }
+      nav.show { display: flex; }
+      .menu-toggle { display: block; }
+    }
+
+    /* === Sections & Collapsibles === */
+    .section { padding: 2rem; border-bottom: 1px solid #ccc; }
+    .collapsible {
+      cursor: pointer;
+      background-color: var(--card-bg);
+      padding: 1rem;
+      font-weight: bold;
+      border: none;
+      text-align: left;
+      outline: none;
+      width: 100%;
+      transition: background 0.3s ease;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+      font-size: 1.2rem;
+    }
+    .collapsible:hover { background-color: #ddd; }
+    .content {
+      display: none;
+      padding: 1rem;
+      background-color: #eee;
+      animation: flipIn 0.6s ease;
+    }
+    @keyframes flipIn {
+      from { transform: rotateX(-90deg); opacity: 0; }
+      to { transform: rotateX(0); opacity: 1; }
+    }
+
+    /* === Slider === */
+    .slider-section { position: relative; max-width: 100%; overflow: hidden; background-color: var(--card-bg); }
+    .slider-container { position: relative; width: 100%; height: 60vh; }
+    .slide { position: absolute; top: 0; left: 0; opacity: 0; width: 100%; height: 100%; transition: opacity 1s ease-in-out; z-index: 0; }
+    .slide.active { opacity: 1; z-index: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .caption {
+      position: absolute;
+      bottom: 30px;
+      left: 40px;
+      color: #000;
+      font-size: 2rem;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    .slider-dots {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+    }
+    .slider-dots .dot {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin: 0 6px;
+      background: #000;
+      border-radius: 50%;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    .slider-dots .dot.active { opacity: 1; }
+
+    /* === Footer === */
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background-color: var(--accent-color);
+      padding: 2rem;
+      color: #fff;
+    }
+    .footer-left, .footer-right { flex: 1 1 300px; padding: 1rem; }
+    .footer-left h4, .footer-right h4 { margin-bottom: 1rem; }
+    .footer-left a, .footer-right a {
+      display: block;
+      color: #fff;
+      margin: 0.5rem 0;
+      text-decoration: none;
+    }
+    .footer-left a:hover, .footer-right a:hover { color: var(--hover-color); }
+    .social-icons a { margin-right: 1rem; color: #fff; font-size: 1.2rem; }
+    .social-icons a:hover { color: var(--hover-color); }
+
+    /* === Scroll to Top === */
+    #scrollTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      z-index: 1200;
+    }
+    #scrollTop:hover { background: var(--hover-color); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><i class="fas fa-graduation-cap"></i> ACHSOSA '93 SET</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="navLinks">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Projects</a>
+      <a href="#">Events</a>
+      <a href="#">Gallery</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Scroll to Top -->
+  <button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Slider -->
+  <section class="slider-section">
+    <div class="slider-container">
+      <div class="slide active">
+        <img src="img/slide1.jpg" alt="Alumni Gathering">
+        <div class="caption">United in Friendship, Excellence, and Service</div>
+      </div>
+      <div class="slide">
+        <img src="img/slide2.jpg" alt="School Memories">
+        <div class="caption">Celebrating Our Roots, Inspiring the Future</div>
+      </div>
+      <div class="slide">
+        <img src="img/slide3.jpg" alt="Community Project">
+        <div class="caption">Giving Back to Our Alma Mater</div>
+      </div>
+      <div class="slide">
+        <img src="img/slide4.jpg" alt="Reunion">
+        <div class="caption">Reunions that Rekindle Bonds</div>
+      </div>
+      <div class="slide">
+        <img src="img/slide5.jpg" alt="ACHSOSA Family">
+        <div class="caption">Once a Student, Forever Family</div>
+      </div>
+    </div>
+    <div class="slider-dots">
+      <span class="dot active" onclick="showSlide(0)"></span>
+      <span class="dot" onclick="showSlide(1)"></span>
+      <span class="dot" onclick="showSlide(2)"></span>
+      <span class="dot" onclick="showSlide(3)"></span>
+      <span class="dot" onclick="showSlide(4)"></span>
+    </div>
+  </section>
+
+  <!-- Collapsible Sections -->
+  <div class="section">
+    <button class="collapsible">About ACHSOSA '93 ⬇</button>
+    <div class="content">
+      <p>ACHSOSA '93 SET Alumni Association is a community of proud graduates...</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="collapsible">Our School Anthem ⬇</button>
+    <div class="content"><p><strong>School Anthem (Sample)</strong></p></div>
+  </div>
+
+  <div class="section">
+    <button class="collapsible">Our Vision & Mission ⬇</button>
+    <div class="content"><p><strong>Vision:</strong> To be a united alumni body...</p></div>
+  </div>
+
+  <div class="section">
+    <button class="collapsible">Our Projects & Achievements ⬇</button>
+    <div class="content"><p>Over the years, ACHSOSA '93 has embarked on projects...</p></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-left">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <h4>Quick Links</h4>
+      <a href="#">Alumni Registration</a>
+      <a href="#">Reunion Events</a>
+      <a href="#">Scholarship Fund</a>
+      <a href="#">Gallery</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Menu Toggle */
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    /* Collapsible Sections */
+    document.querySelectorAll(".collapsible").forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+      });
+    });
+
+    /* Slider */
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(n) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+      });
+      slides[n].classList.add('active');
+      dots[n].classList.add('active');
+      slideIndex = n;
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    setInterval(nextSlide, 4000);
+
+    /* Scroll to Top */
+    const scrollTopBtn = document.getElementById("scrollTop");
+    window.addEventListener("scroll", () => {
+      scrollTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    });
+    scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  </script>
+
+</body>
+</html>
