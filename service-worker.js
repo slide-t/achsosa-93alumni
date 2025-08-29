@@ -4,12 +4,13 @@ const ASSETS_TO_CACHE = [
   '/index.html',
   '/css/style.css',    // adjust path if CSS is separate
   '/js/main.js',       // adjust path if JS is separate
-  '/img/slide1.jpg',
-  '/img/slide2.jpg',
-  '/img/slide3.jpg',
+  '/img/achsosa2.jpg',
+  '/img/achsosa3.jpg',
+  '/img/achsosa7.jpg',
   '/img/slide4.jpg',
   '/img/slide5.jpg',
   '/favicon.ico',
+  '/gallery.html',
   // add other assets you want cached
 ];
 
