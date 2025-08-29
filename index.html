@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACHSOSA '93 SET Alumni</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --text-color: #f5f5f5;
+      --accent-color: #2ecc71;
+      --card-bg: #161b22;
+      --hover-color: #1abc9c;
+    }
+
+    body.light-mode {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --card-bg: #f1f1f1;
+      --accent-color: #006400;
+      --hover-color: #009900;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.4s, color 0.4s;
+    }
+
+    header {
+      background-color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateX(30px);
+      animation: slideIn 0.6s forwards;
+    }
+
+    nav a:hover {
+      color: var(--hover-color);
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 20px; /* increased */
+      color: var(--text-color);
+      cursor: pointer;
+    }
+
+    .theme-toggle {
+      margin-left: 1rem;
+      font-size: 20px;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(90deg);
+    }
+
+    .section {
+      padding: 2rem;
+      border-bottom: 1px solid #222;
+    }
+
+    .collapsible {
+      cursor: pointer;
+      background-color: var(--card-bg);
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem; /* bigger */
+      border: none;
+      text-align: left;
+      outline: none;
+      width: 100%;
+      transition: background 0.3s ease;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .collapsible:hover {
+      background-color: #1c1f26;
+    }
+
+    .content {
+      display: none;
+      padding: 1rem;
+      background-color: #1e242d;
+      animation: flipIn 0.6s ease;
+    }
+
+    @keyframes flipIn {
+      from {
+        transform: rotateX(-90deg);
+        opacity: 0;
+      }
+      to {
+        transform: rotateX(0);
+        opacity: 1;
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background-color: #000;
+      padding: 2rem;
+    }
+
+    .footer-left, .footer-right {
+      flex: 1 1 300px;
+      padding: 1rem;
+    }
+
+    .footer-left h4, .footer-right h4 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-left a, .footer-right a {
+      display: block;
+      color: var(--text-color);
+      margin: 0.5rem 0;
+      text-decoration: none;
+    }
+
+    .footer-left a:hover, .footer-right a:hover {
+      color: var(--hover-color);
+    }
+
+    .social-icons a {
+      margin-right: 1rem;
+      color: var(--text-color);
+      font-size: 1.2rem;
+    }
+
+    .social-icons a:hover {
+      color: var(--hover-color);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color: #000;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      nav.show a {
+        font-size: 24px; /* larger links on mobile */
+        animation: slideIn 0.6s forwards;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Slider */
+    .slider-section {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 1s ease-in-out;
+      z-index: 0;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 30px;
+      left: 40px;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .slider-dots .dot {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin: 0 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .slider-dots .dot.active {
+      opacity: 1;
+    }body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+      }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><i class="fas fa-graduation-cap"></i> ACHSOSA '93 SET</div>
+    <div>
+      <i class="fas fa-cog theme-toggle" onclick="toggleTheme()"></i>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav id="navLinks">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Projects</a>
+      <a href="#">Events</a>
+      <a href="#">Gallery</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+<button id="themeToggle" class="gear-icon">⚙️</button>
+  <!-- keep slider + collapsibles + footer same as before -->
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("show");
+
+      if (nav.classList.contains("show")) {
+        const links = nav.querySelectorAll("a");
+        links.forEach((link, index) => {
+          link.style.animationDelay = `${index * 0.15}s`;
+        });
+      }
+    }
+
+   /* function toggleTheme() {
+      document.body.classList.toggle("light-mode");
+    }*/
+
+    // Collapsibles
+    const collapsibles = document.querySelectorAll(".collapsible");
+    collapsibles.forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+        button.classList.toggle("active");
+      });
+    });
+
+    // Slider
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(n) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+      });
+      slides[n].classList.add('active');
+      dots[n].classList.add('active');
+      slideIndex = n;
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    setInterval(nextSlide, 4000);
+  </script>
+  <!-- Theme Toggle Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+
+    // Load saved preference
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      body.classList.toggle("dark-mode", savedTheme === "dark");
+    }
+
+    // Toggle & save preference
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      const isDark = body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  });
+</script>
+</body>
+</html>
