@@ -34,14 +34,7 @@
       top: 0;
       z-index: 1000;
     }
-
-    .logo {
-      font-size: 1.5rem;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .menu-toggle {
+.menu-toggle {
       display: none;
       font-size: 32px;
       color: #fff;
@@ -216,7 +209,7 @@
   border-radius: 60%; /* gives that circular-ish look *
   object-fit: cover; /* ensures image fits nicely */
 }*/
-    /* Spin animation */
+    /* Spin animation *
 @keyframes spinLogo {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -229,6 +222,23 @@
   object-fit: cover;
   animation: spinLogo 10s linear infinite; /* spins every 10 seconds */
 }
+/* Logo image spin */
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 60%;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  animation: spinLogo 10s linear infinite;
+}
+
+/* Keyframes for spinning */
+@keyframes spinLogo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+    
   </style>
 </head>
 <body>
