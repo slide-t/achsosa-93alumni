@@ -248,6 +248,91 @@ footer {
   color: #fff;
 }
 
+.footer-left, .footer-right {
+  flex: 1 1 300px;
+  padding: 1rem;
+}
+
+.footer-left h4, .footer-right h4 {
+  margin-bottom: 1rem;
+}
+
+.footer-left a, .footer-right a {
+  display: block;
+  color: #fff;
+  margin: 0.5rem 0;
+  text-decoration: none;
+}
+
+.footer-left a:hover, .footer-right a:hover {
+  color: var(--hover-color);
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.social-icons a {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: var(--hover-color);
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  footer {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+  .footer-left {
+    flex: 1;
+  }
+  .footer-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 767px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-left, .footer-right {
+    flex: 1 1 100%;
+    padding: 1rem 0;
+  }
+  .footer-right {
+    align-items: center;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* === Footer === *
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--accent-color);
+  padding: 2rem;
+  color: #fff;
+}
+
 .footer-left, .footer-right { flex: 1 1 300px; padding: 1rem; }
 .footer-left h4, .footer-right h4 { margin-bottom: 1rem; }
 
@@ -258,12 +343,12 @@ footer {
 .social-icons a { font-size: 1.8rem; transition: transform 0.3s ease; }
 .social-icons a:hover { transform: scale(1.2); color: var(--hover-color); }
 
-/* Footer layout on desktop */
+/* Footer layout on desktop *
 @media (min-width: 768px) {
   footer { flex-wrap: nowrap; }
   .footer-left { flex: 1; }
   .footer-right { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
-}
+}*/
 /* === Gallery Grid Responsive Fix === */
 @media (max-width: 768px) {
   .gallery-grid {
