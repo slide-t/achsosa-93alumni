@@ -2,152 +2,158 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About Us — ACHSOSA '93 SET</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — ACHSOSA '93 SET</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
-    /* === Global Styles === */
+    /* === Base === */
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
       margin: 0;
-      background: #fff; /* White background */
-      color: #333;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      overflow-x: hidden;
     }
 
-    /* === Navbar === */
+    /* === Header/Navbar === */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #006400; /* Deep green */
-      color: #fff;
-      padding: 10px 15px;
+      background: #fff;
+      color: #232f3e;
+      padding: 12px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .logo {
-      font-size: 18px;
+    header .logo {
+      font-size: 22px;
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .logo-img {
-      height: 35px;
+      height: 40px;
+      width: auto;
     }
 
     nav {
       display: flex;
-      gap: 15px;
+      gap: 20px;
+      transition: transform 0.3s ease-in-out;
     }
 
     nav a {
-      color: #fff;
+      font-size: 24px;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
+      color: #006400;
+      position: relative;
+      transition: color 0.3s ease;
     }
 
-    nav a:hover {
-      color: #FFD700; /* Gold hover */
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: #006400;
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     .menu-toggle {
       display: none;
-      font-size: 22px;
+      font-size: 26px;
       cursor: pointer;
     }
 
+    /* === Mobile === */
     @media (max-width: 768px) {
       nav {
-        display: none;
-        flex-direction: column;
-        background: #006400;
         position: absolute;
-        top: 60px;
+        top: 65px;
         right: 0;
-        width: 200px;
-        padding: 10px;
+        background: #fff;
+        flex-direction: column;
+        width: 220px;
+        max-height: 0;
+        overflow: hidden;
+        transform: translateX(100%);
+        box-shadow: -2px 2px 6px rgba(0,0,0,0.2);
       }
-
       nav.show {
-        display: flex;
+        transform: translateX(0);
+        max-height: 500px;
       }
-
+      nav a {
+        padding: 12px;
+        font-size: 20px;
+      }
       .menu-toggle {
         display: block;
       }
     }
 
-    /* === Background Overlay === */
-    .overlay {
-      background: url('https://www.transparenttextures.com/patterns/water.png');
-      background-size: cover;
-      background-attachment: fixed;
-      min-height: 100vh;
+    /* === About Us Section === */
+    .about-hero {
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80')
+        no-repeat center center/cover;
+      height: 300px;
+      position: relative;
       display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: flex-start;
-      padding: 40px 20px;
+      color: #fff;
     }
 
-    /* === Scrollable Panel === */
-    .content-panel {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      max-width: 800px;
-      width: 100%;
-      max-height: 80vh; /* Scrollable */
-      overflow-y: auto;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      position: relative;
-    }
-
-    /* === Watermark === */
-    .content-panel::before {
+    .about-hero::after {
       content: "";
-      background: url('images/logo.png') center center no-repeat;
-      background-size: 200px;
-      opacity: 0.08;
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 100, 0, 0.5);
+      backdrop-filter: blur(2px);
     }
 
-    .content-panel h1,
-    .content-panel p {
+    .about-hero h1 {
       position: relative;
-      z-index: 1; /* Text above watermark */
-    }
-
-    .content-panel h1 {
-      color: #006400;
+      font-size: 36px;
+      font-weight: bold;
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 32px;
+      z-index: 1;
     }
 
-    .content-panel p {
-      margin-bottom: 15px;
-      line-height: 1.7;
-      color: #333;
+    /* === Scrollable Text Panel === */
+    .about-content {
+      max-width: 800px;
+      margin: -80px auto 40px auto;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      max-height: 500px;
     }
 
-    .content-panel strong {
+    .about-content h2 {
       color: #006400;
+      margin-bottom: 15px;
     }
 
-    .content-panel em {
-      color: #555;
+    .about-content p {
+      line-height: 1.7;
+      margin-bottom: 15px;
     }
   </style>
 </head>
@@ -156,57 +162,57 @@
   <!-- Header -->
   <header>
     <div class="logo">
-      <img src="images/logo.png" alt="ACHSOSA Logo" class="logo-img">
+      <img src="https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png" alt="ACHSOSA Logo" class="logo-img">
       ACHSOSA '93 SET <i class="fas fa-graduation-cap"></i>
     </div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="projects.html">Projects</a>
-      <a href="events.html">Events</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="alumni.html">Alumni Registration</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" onclick="closeMenu()">Home</a>
+      <a href="about.html" onclick="closeMenu()">About Us</a>
+      <a href="projects.html" onclick="closeMenu()">Projects</a>
+      <a href="events.html" onclick="closeMenu()">Events</a>
+      <a href="gallery.html" onclick="closeMenu()">Gallery</a>
+      <a href="alumni.html" onclick="closeMenu()">Alumni Registration</a>
+      <a href="contact.html" onclick="closeMenu()">Contact</a>
     </nav>
   </header>
 
-  <!-- About Section -->
-  <div class="overlay">
-    <div class="content-panel">
-      <h1>About ACHSOSA '93 Set</h1>
-      <p>
-        The <strong>Army Children High School Old Students Association (ACHSOSA) ’93 Set</strong> 
-        is a vibrant community of proud alumni connected by cherished memories, lifelong friendships, 
-        and the values instilled in us by our alma mater. 
-      </p>
-      <p>
-        We are committed to <strong>supporting one another</strong>, 
-        <strong>giving back to our school</strong>, and <strong>uplifting our community</strong>. 
-        Our collective efforts extend beyond nostalgia—they focus on building opportunities, 
-        mentoring the younger generation, and contributing meaningfully to society.
-      </p>
-      <p>
-        Our guiding principle is simple: <em>"Once a student, forever a family."</em> 
-        As the ’93 Set, we honor the past, celebrate our present, and lay the foundation for a brighter future. 
-      </p>
-      <p>
-        With shared passion and unity, we continue to uphold the legacy of ACHSOSA— 
-        one of excellence, resilience, and service.
-      </p>
-    </div>
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <h1>About Army Children High School, Epe</h1>
+  </section>
+
+  <!-- Scrollable Glassy Panel -->
+  <div class="about-content">
+    <h2>Our Story</h2>
+    <p>
+      Army Children High School, Epe, has stood as a beacon of knowledge, discipline, and excellence since its founding. 
+      It was established with a mission to nurture both academic brilliance and moral integrity in young minds, 
+      providing them with the foundation to excel in life.
+    </p>
+    <p>
+      Over the decades, the school has produced outstanding alumni who have made significant contributions across 
+      various fields—education, business, technology, military service, and beyond. The values instilled in the 
+      classrooms continue to guide and inspire each generation.
+    </p>
+    <p>
+      Our alumni association, ACHSOSA ’93 Set, carries forward this legacy by uniting former students and supporting 
+      the growth and development of the school community. Through projects, events, and charitable initiatives, 
+      we remain committed to giving back and keeping the bond strong.
+    </p>
+    <p>
+      Today, Army Children High School, Epe, is not just a school—it is a family, a tradition, and a legacy of excellence 
+      that lives on in every student who has walked its halls.
+    </p>
   </div>
 
-  <!-- Footer -->
-  <div id="footer-container"></div>
-
   <script>
-    // Toggle Mobile Menu
     function toggleMenu() {
-      const nav = document.getElementById("navLinks");
-      nav.classList.toggle("show");
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+    function closeMenu() {
+      document.getElementById("navLinks").classList.remove("show");
     }
   </script>
-  <script src="footer.js"></script>
 </body>
 </html>
