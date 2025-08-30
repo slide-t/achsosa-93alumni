@@ -9,7 +9,7 @@ const ASSETS_TO_CACHE = [
   '/img/achsosa7.jpg',
   '/img/slide4.jpg',
   '/img/slide5.jpg',
-  '/favicon.ico',
+  '/images/favicon-32x32.png',
   '/gallery.html',
   '/footer.html',
   // add other assets you want cached
