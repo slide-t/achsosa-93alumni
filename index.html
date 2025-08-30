@@ -252,9 +252,7 @@
     </nav>
   </header>
 
-  <!-- Scroll to Top -->
-  <button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
-
+  
   <!-- Slider -->
   <section class="slider-section">
     <div class="slider-container">
@@ -325,6 +323,8 @@
   </div>
 <!-- Place this where you want the footer to appear -->
 <div id="footer-container"></div>
+<!-- Scroll to Top -->
+  <button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
 
   
 
@@ -374,43 +374,7 @@ document.querySelectorAll("#navLinks a").forEach(link => {
         content.style.display = content.style.display === "block" ? "none" : "block";
       });
     });
-
-    /* Slider */
-/*document.addEventListener("DOMContentLoaded", () => {
-  let slideIndex = 0;
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
-
-  if (slides.length === 0 || dots.length === 0) return; // safety check
-
-  function showSlide(n) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('active');
-      dots[i].classList.remove('active');
-    });
-    slides[n].classList.add('active');
-    dots[n].classList.add('active');
-    slideIndex = n;
-  }
-
-  function nextSlide() {
-    slideIndex = (slideIndex + 1) % slides.length;
-    showSlide(slideIndex);
-  }
-
-  // Initialize first slide
-  showSlide(slideIndex);
-
-  // Auto-slide every 4 seconds
-  setInterval(nextSlide, 4000);
-
-  // Dot click events
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => showSlide(i));
-  });
-});*/
-
-    
+ 
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -439,6 +403,7 @@ document.querySelectorAll("#navLinks a").forEach(link => {
     });
     scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   </script>
+  
 <!--
   <script>
 document.addEventListener("DOMContentLoaded", () => {
