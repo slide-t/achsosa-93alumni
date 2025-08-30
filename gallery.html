@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
@@ -194,6 +193,20 @@ lightbox.addEventListener('click', e => {
   if (e.target === lightbox) lightbox.style.display = 'none';
 });
 </script>
-  
+  <!-- Place this where you want the footer to appear -->
+<div id="footer-container"></div>
+
+<script>
+  // Dynamically load footer.html
+  fetch('footer.html')
+    .then(response => {
+      if (!response.ok) throw new Error('Footer not found');
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById('footer-container').innerHTML = data;
+    })
+    .catch(error => console.error('Error loading footer:', error));
+</script>
 </body>
 </html>
