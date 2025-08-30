@@ -1,4 +1,4 @@
-<style>
+
     /* === Variables === */
     :root {
       --bg-color: #fff;
@@ -157,7 +157,7 @@
 
 
 
-    /* === Footer === */
+    /* === Footer === 
     footer {
       display: flex;
       flex-wrap: wrap;
@@ -223,4 +223,4 @@
       padding:24px auto;
     }
     
-  </style>
+
