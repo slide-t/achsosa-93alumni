@@ -5,6 +5,32 @@
   <title>ACHSOSA '93 SET Gallery</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+  /* Default hidden on mobile */
+#navLinks {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* When toggled open */
+#navLinks.show {
+  display: flex;
+}
+
+/* Desktop view */
+@media (min-width: 768px) {
+  #navLinks {
+    display: flex !important;
+    flex-direction: row;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
+</style>
 </head>
 <body>
 
