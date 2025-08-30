@@ -60,7 +60,37 @@
   <script src="footer.js"></script>
   <script>
     // Registration Form Submission (simple alert)
-    const form = document.getElementById('registrationForm');
+const form = document.getElementById('registrationForm');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const alumni = {
+    fullname: form.fullname.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    graduationYear: form.graduationYear.value,
+    occupation: form.occupation.value,
+    comments: form.comments.value
+  };
+
+  try {
+    const response = await fetch('/.netlify/functions/saveRegistration', {
+      method: 'POST',
+      body: JSON.stringify(alumni),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const result = await response.json();
+    alert(result.message);
+    form.reset();
+  } catch (err) {
+    console.error(err);
+    alert('Submission failed. Please try again.');
+  }
+});
+
+    
+    /*const form = document.getElementById('registrationForm');
     form.addEventListener('submit', e => {
       e.preventDefault();
       alert('Thank you for registering! We will contact you soon.');
