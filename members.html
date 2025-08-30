@@ -1,310 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Members — ACHSOSA '93 SET</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Army Children High School Epe — Members</title>
   <style>
-    :root{
-      --green:#006622;
-      --text:#222;
-      --muted:#6b7280;
-      --bg:#ffffff;
-      --surface:#f7f7f7;
-      --shadow:0 10px 25px rgba(0,0,0,.12);
-      --radius:14px;
-      --header-h:68px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0}
-    body{
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      position:relative;
-      overflow-x:hidden;
+    /* ==== Global Styles ==== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* ===== Faded circular logo background ===== */
-    body::before{
-      content:"";
-      position:fixed;
-      top:50%; left:50%;
-      transform:translate(-50%, -50%);
-      width:500px; height:500px;
-      border-radius:50%;
-      background:var(--green);
-      opacity:0.05;
-      z-index:-1;
+    /* Faded Circular Logo Container */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(0, 128, 0, 0.05);
+      z-index: 0;
     }
 
-    /* Header / Navbar */
-    header{
-      position:sticky; top:0; z-index:1000;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 18px;
-      background:var(--green);
-      color:#fff;
-      min-height:var(--header-h);
-    }
-    .logo{display:flex; align-items:center; gap:10px; font-weight:700;}
-    .logo img{width:44px; height:44px; border-radius:50%; object-fit:cover;}
-
-    .menu-toggle{display:none; font-size:30px; cursor:pointer;}
-    nav{display:flex; gap:22px; align-items:center}
-    nav a{color:#fff; text-decoration:none; font-weight:600; font-size:18px;}
-    nav a:hover{text-decoration:underline}
-
-    @media (max-width: 768px){
-      .menu-toggle{display:block}
-      nav{
-        position:absolute; top:var(--header-h); left:0; right:0;
-        background:#fff; color:var(--text);
-        flex-direction:column; padding:10px 14px; display:none;
-        box-shadow:var(--shadow); border-radius:0 0 16px 16px;
-      }
-      nav.show{display:flex;}
-      nav a{color:var(--green); width:100%; padding:10px; border-radius:10px}
-      nav a:hover{background:#f0fff6}
+    /* ==== Navbar ==== */
+    header {
+      background: #014421;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    /* Members button */
-    .members-btn{
-      margin:20px auto;
-      display:block;
-      border:0;
-      background:var(--green);
-      color:#fff;
-      font-weight:700;
-      font-size:18px;
-      padding:14px 20px;
-      border-radius:var(--radius);
-      cursor:pointer;
-      box-shadow:var(--shadow);
-      transition:background .3s;
+    /* ==== Button ==== */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: #fff;
+      border: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      color: #014421;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      z-index: 2;
     }
-    .members-btn:hover{background:#009933}
+    .btn:hover { background: #f1f1f1; }
 
-    /* Stage */
-    .stage{
-      position:fixed; top:var(--header-h); left:0; right:0; bottom:0;
-      background:var(--bg);
-      overflow:hidden;
+    /* Tooltip */
+    .btn::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #014421;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+    .btn:hover::after { opacity: 1; }
+
+    /* ==== Search ==== */
+    .search-box {
+      max-height: 0;
+      overflow: hidden;
+      text-align: center;
+      transition: max-height 0.5s ease;
+    }
+    .search-box.show {
+      max-height: 80px;
+      padding: 10px 0;
+    }
+    #searchInput {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #014421;
+      border-radius: 25px;
+      outline: none;
+      transition: width 0.4s ease;
+    }
+    #searchInput:focus {
+      width: 80%;
     }
 
-    /* Members list panel */
-    .members-container{
-      position:absolute; inset:0;
-      background:var(--surface);
-      display:flex; flex-direction:column;
-      transform:translateX(-100%);
-      transition:transform .4s ease;
-      padding:14px 16px 18px;
+    /* ==== Members List ==== */
+    #membersContainer {
+      position: fixed;
+      top: 70px;
+      left: -100%;
+      width: 100%;
+      height: calc(100% - 70px);
+      background: #fff;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      transition: left 0.5s ease;
+      z-index: 5;
     }
-    .members-container.show{transform:translateX(0);}
+    #membersContainer.show {
+      left: 0;
+    }
+    #memberList {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .member-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .member-item:hover {
+      background: #f9f9f9;
+    }
+    .close-list {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background: #eee;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-    /* Close button outside list */
-    .close-list-btn{
-      align-self:flex-end;
-      background:var(--green);
-      color:#fff;
-      border:0;
-      padding:6px 14px;
-      border-radius:var(--radius);
-      cursor:pointer;
-      margin-bottom:10px;
+    /* ==== Member Card ==== */
+    #memberCard {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      height: calc(100% - 70px);
+      background: #fff;
+      box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+      transition: right 0.5s ease;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
     }
-    .close-list-btn:hover{background:#009933}
-
-    .members-header{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;}
-    .members-header h2{margin:0; font-size:20px; color:var(--green)}
-    .members-search{flex:1}
-    .members-search input{
-      width:160px;
-      padding:10px 12px;
-      border-radius:10px;
-      border:1px solid #e5e7eb;
-      outline:none;
-      transition:width .3s ease;
+    #memberCard.show {
+      right: 0;
     }
-    .members-search input:focus{width:100%}
-
-    .member-list{
-      list-style:none; margin:8px 0 0; padding:0;
-      overflow:auto;
-      background:#fff;
-      border-radius:12px; box-shadow:var(--shadow);
-      height:100%;
+    #memberCard img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
     }
-    .member-item{
-      padding:14px 16px;
-      cursor:pointer;
-      display:flex; align-items:center; gap:12px;
-      border-bottom:1px solid #f0f0f0;
+    .card-content {
+      padding: 15px;
+      flex: 1;
+      overflow-y: auto;
     }
-    .member-item:last-child{border-bottom:0}
-    .member-item:hover{background:#f9fff9}
-    .member-rank{font-weight:700; color:var(--green); min-width:110px}
-    .member-name{font-weight:600}
-    .member-meta{color:var(--muted); font-size:13px}
-
-    /* Detail card */
-    .member-card{
-      position:absolute; inset:0;
-      display:flex; justify-content:center; align-items:center;
-      pointer-events:none; opacity:0;
-      transform:translateX(100%);
-      transition:transform .4s ease, opacity .4s ease;
-      padding:18px;
+    .card-content h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #014421;
     }
-    .member-card.show{opacity:1; transform:translateX(0); pointer-events:auto;}
-
-    .card{
-      width:min(680px, 92vw);
-      background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
-      overflow:hidden; position:relative;
+    .card-content p {
+      margin: 5px 0;
     }
-    .card .close-btn{
-      position:absolute; top:12px; right:12px;
-      border:0; background:var(--green); color:#fff;
-      padding:6px 10px; border-radius:10px;
-      cursor:pointer; font-weight:700;
+    .close-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 8px 16px;
+      background: #014421;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
     }
-    .card img{width:100%; height:300px; object-fit:cover; background:#e5e7eb;}
-    .card-body{padding:16px 18px}
-    .card-body h3{margin:0 0 6px; color:var(--green)}
-    .detail{margin:6px 0; font-size:15px}
-    .detail strong{color:#374151}
   </style>
 </head>
 <body>
+  <header>Army Children High School Epe</header>
 
-  <header>
-    <div class="logo">
-      <img src="images/logo.png" alt="ACHSOSA Logo">
-      ACHSOSA '93 SET <i class="fas fa-graduation-cap"></i>
+  <!-- Members Button -->
+  <button class="btn" id="membersBtn" data-tooltip="Click to view members">Members List</button>
+
+  <!-- Search Box -->
+  <div class="search-box" id="searchBox">
+    <input type="text" id="searchInput" placeholder="Search by name or country...">
+  </div>
+
+  <!-- Members List -->
+  <div id="membersContainer">
+    <div class="close-list" onclick="closeMembers()">Close Members List</div>
+    <ul id="memberList"></ul>
+  </div>
+
+  <!-- Member Card -->
+  <div id="memberCard">
+    <img id="memberImg" src="" alt="Member">
+    <div class="card-content">
+      <h2 id="memberName"></h2>
+      <p><strong>Occupation:</strong> <span id="memberOccupation"></span></p>
+      <p><strong>Position:</strong> <span id="memberPosition"></span></p>
+      <p><strong>Marital Status:</strong> <span id="memberMarital"></span></p>
+      <p><strong>Country:</strong> <span id="memberCountry"></span></p>
+      <button class="close-btn" onclick="closeMemberCard()">Close</button>
     </div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="alumni.html">Alumni Registration</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
-
-  <button id="membersBtn" class="members-btn">Members List</button>
-
-  <div class="stage">
-    <!-- List Panel -->
-    <section class="members-container" id="membersContainer">
-      <button class="close-list-btn" onclick="closeMembers()">Close</button>
-      <div class="members-header">
-        <h2>Members</h2>
-        <div class="members-search"><input id="searchInput" type="search" placeholder="Search by name or country..." /></div>
-      </div>
-      <ul class="member-list" id="memberList"></ul>
-    </section>
-
-    <!-- Detail Panel -->
-    <section class="member-card" id="memberCard">
-      <div class="card">
-        <button class="close-btn" onclick="closeMemberCard()">Close</button>
-        <img id="memberImg" src="" alt="">
-        <div class="card-body">
-          <h3 id="memberName"></h3>
-          <p class="detail"><strong>Occupation:</strong> <span id="memberOccupation"></span></p>
-          <p class="detail"><strong>Current Position:</strong> <span id="memberPosition"></span></p>
-          <p class="detail"><strong>Marital Status:</strong> <span id="memberMarital"></span></p>
-          <p class="detail"><strong>Country:</strong> <span id="memberCountry"></span></p>
-        </div>
-      </div>
-    </section>
   </div>
 
   <script>
-    function toggleMenu(){
-      document.getElementById('navLinks').classList.toggle('show');
-    }
-
-    const MEMBERS = [
-      { rank: "President", name: "Jane Doe", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80", occupation: "Project Manager", position: "President", marital: "Married", country: "Nigeria" },
-      { rank: "Vice President", name: "Michael Smith", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80", occupation: "Engineer", position: "Vice President", marital: "Single", country: "UK" },
-      { rank: "General Secretary", name: "Aisha Bello", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80", occupation: "Lawyer", position: "General Secretary", marital: "Married", country: "USA" },
-      { rank: "Financial Sec.", name: "John Okafor", img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80", occupation: "Accountant", position: "Financial Secretary", marital: "Married", country: "Canada" },
-      { rank: "Welfare", name: "Mary Johnson", img: "https://images.unsplash.com/photo-1552226028-6c58f4f5c9f0?q=80", occupation: "Nurse", position: "Welfare Officer", marital: "Single", country: "Nigeria" }
+    /* ==== Members Data ==== */
+    let MEMBERS = [
+      { rank: "President", name: "Jane Doe", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop", occupation: "Project Manager", position: "President", marital: "Married", country: "Nigeria" },
+      { rank: "Vice President", name: "Michael Smith", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop", occupation: "Engineer", position: "Vice President", marital: "Single", country: "UK" },
+      { rank: "General Secretary", name: "Aisha Bello", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop", occupation: "Lawyer", position: "General Secretary", marital: "Married", country: "USA" },
+      { rank: "Financial Sec.", name: "John Okafor", img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1200&auto=format&fit=crop", occupation: "Accountant", position: "Financial Secretary", marital: "Married", country: "Canada" },
+      { rank: "Welfare", name: "Mary Johnson", img: "https://images.unsplash.com/photo-1552226028-6c58f4f5c9f0?q=80&w=1200&auto=format&fit=crop", occupation: "Nurse", position: "Welfare Officer", marital: "Single", country: "Nigeria" }
     ];
 
-    const listEl = document.getElementById('memberList');
-    const containerEl = document.getElementById('membersContainer');
-    const cardWrap = document.getElementById('memberCard');
+    const membersBtn = document.getElementById("membersBtn");
+    const searchBox = document.getElementById("searchBox");
+    const containerEl = document.getElementById("membersContainer");
+    const cardEl = document.getElementById("memberCard");
+    const listEl = document.getElementById("memberList");
 
-    const imgEl = document.getElementById('memberImg');
-    const nameEl = document.getElementById('memberName');
-    const occEl = document.getElementById('memberOccupation');
-    const posEl = document.getElementById('memberPosition');
-    const marEl = document.getElementById('memberMarital');
-    const ctyEl = document.getElementById('memberCountry');
-    const searchEl = document.getElementById('searchInput');
+    const imgEl = document.getElementById("memberImg");
+    const nameEl = document.getElementById("memberName");
+    const occEl = document.getElementById("memberOccupation");
+    const posEl = document.getElementById("memberPosition");
+    const marEl = document.getElementById("memberMarital");
+    const ctyEl = document.getElementById("memberCountry");
 
-    function openMembers(){
-      containerEl.classList.add('show');
-      cardWrap.classList.remove('show');
-    }
-    function closeMembers(){
-      containerEl.classList.remove('show');
-    }
-
-    function renderList(items){
-      listEl.innerHTML = '';
-      items.forEach((m, idx)=>{
-        const li = document.createElement('li');
-        li.className = 'member-item';
-        li.setAttribute("data-country", m.country || "");
-        li.innerHTML = `
-          <span class="member-rank">${m.rank || ''}</span>
-          <div>
-            <div class="member-name">${m.name}</div>
-            <div class="member-meta">${m.country || ''}</div>
-          </div>
-        `;
-        li.addEventListener('click', ()=>showMember(idx, items));
+    function renderList(items) {
+      listEl.innerHTML = "";
+      items.forEach((m, i) => {
+        const li = document.createElement("li");
+        li.className = "member-item";
+        li.textContent = `${m.rank}: ${m.name} (${m.country})`;
+        li.onclick = () => showMember(i, items);
         listEl.appendChild(li);
       });
     }
 
-    function showMember(index, source = MEMBERS){
+    function showMember(index, source = MEMBERS) {
       const m = source[index];
-      imgEl.src = m.img || '';
-      nameEl.textContent = m.name || '';
-      occEl.textContent = m.occupation || '';
-      posEl.textContent = m.position || m.rank || '';
-      marEl.textContent = m.marital || '';
-      ctyEl.textContent = m.country || '';
-      containerEl.classList.remove('show');
-      setTimeout(()=> cardWrap.classList.add('show'), 100);
-    }
-    function closeMemberCard(){
-      cardWrap.classList.remove('show');
-      setTimeout(()=> containerEl.classList.add('show'), 100);
+      imgEl.src = m.img;
+      imgEl.alt = m.name;
+      nameEl.textContent = m.name;
+      occEl.textContent = m.occupation;
+      posEl.textContent = m.position;
+      marEl.textContent = m.marital;
+      ctyEl.textContent = m.country;
+
+      containerEl.classList.remove("show");
+      setTimeout(() => { cardEl.classList.add("show"); }, 100);
     }
 
-    searchEl.addEventListener('input', ()=>{
-      const q = searchEl.value.toLowerCase();
+    function closeMemberCard() {
+      cardEl.classList.remove("show");
+      setTimeout(() => { containerEl.classList.add("show"); }, 100);
+    }
+
+    function closeMembers() {
+      containerEl.classList.remove("show");
+      searchBox.classList.remove("show");
+    }
+
+    // Button click -> show search + list
+    membersBtn.onclick = () => {
+      searchBox.classList.add("show");
+      containerEl.classList.add("show");
+      renderList(MEMBERS);
+    };
+
+    // Search filter
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
       const filtered = MEMBERS.filter(m =>
-        (m.name||'').toLowerCase().includes(q) ||
-        (m.country||'').toLowerCase().includes(q) ||
-        (m.rank||'').toLowerCase().includes(q)
+        m.name.toLowerCase().includes(q) || m.country.toLowerCase().includes(q)
       );
       renderList(filtered);
     });
-
-    document.getElementById('membersBtn').addEventListener('click', openMembers);
-
-    renderList(MEMBERS);
   </script>
 </body>
 </html>
