@@ -60,22 +60,25 @@
       <a class="next">&#10095;</a>
     </div>
   </section>
+<!-- Place this where you want the footer -->
+<div id="footer-container"></div>
 
-  <!-- Footer placeholder -->
-  <div id="footer-container"></div>
+<script>
+async function loadFooter() {
+  try {
+    const response = await fetch('footer.html', {cache: 'no-store'});
+    if (!response.ok) throw new Error('Footer not found');
+    const footerHTML = await response.text();
+    document.getElementById('footer-container').innerHTML = footerHTML;
+  } catch (error) {
+    console.error('Error loading footer:', error);
+    // Optional fallback
+    document.getElementById('footer-container').innerHTML = '<footer><p>Footer unavailable</p></footer>';
+  }
+}
 
+loadFooter();
+</script>
   <script src="script.js"></script>
-
-  <script>
-    // Dynamically load footer.html
-    fetch('footer.html')
-      .then(response => {
-        if (!response.ok) throw new Error('Footer not found');
-        return response.text();
-      })
-      .then(data => document.getElementById('footer-container').innerHTML = data)
-      .catch(error => console.error('Error loading footer:', error));
-  </script>
-
 </body>
 </html>
