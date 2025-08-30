@@ -170,7 +170,32 @@
         list.innerHTML = data.map(m => `<li onclick="showMember('${m.id}')">${m.name}</li>`).join("");
       });
 
-    function showMember(id) {
+    
+  let membersData = [];
+
+  // Load members.json
+  fetch("members.json")
+    .then(res => res.json())
+    .then(data => {
+      membersData = data;
+      const list = document.getElementById("memberList");
+      list.innerHTML = data.map(m => `<li onclick="showMember('${m.id}')">${m.name}</li>`).join("");
+    });
+
+  function showMember(id) {
+    const m = membersData.find(member => member.id === id);
+    const details = document.getElementById("memberDetails");
+    details.innerHTML = `
+      <img src="${m.img}" alt="${m.name}">
+      <h3>${m.name}</h3>
+      <p><strong>Occupation:</strong> ${m.occupation}</p>
+      <p><strong>Current Position:</strong> ${m.position}</p>
+      <p><strong>Marital Status:</strong> ${m.marital}</p>
+      <p><strong>Country:</strong> ${m.country}</p>
+    `;
+  }
+
+    /*function showMember(id) {
       const m = membersData.find(member => member.id === id);
       const details = document.getElementById("memberDetails");
       details.innerHTML = `
@@ -180,7 +205,7 @@
         <p><strong>Marital Status:</strong> ${m.marital}</p>
         <p><strong>Country:</strong> ${m.country}</p>
       `;
-    }
+    }*/
   </script>
 </body>
 </html>
