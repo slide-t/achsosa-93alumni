@@ -1,0 +1,38 @@
+[
+  {
+    "id": "john",
+    "name": "John Doe",
+    "img": "https://via.placeholder.com/180/006400/ffffff?text=John",
+    "occupation": "Software Engineer",
+    "position": "Team Lead at Andela",
+    "marital": "Married",
+    "country": "Nigeria"
+  },
+  {
+    "id": "mary",
+    "name": "Mary Johnson",
+    "img": "https://via.placeholder.com/180/006400/ffffff?text=Mary",
+    "occupation": "Nurse",
+    "position": "Head Nurse at NHS",
+    "marital": "Single",
+    "country": "UK"
+  },
+  {
+    "id": "sam",
+    "name": "Sam Okoro",
+    "img": "https://via.placeholder.com/180/006400/ffffff?text=Sam",
+    "occupation": "Businessman",
+    "position": "CEO of Okoro Holdings",
+    "marital": "Married",
+    "country": "USA"
+  },
+  {
+    "id": "amina",
+    "name": "Amina Bello",
+    "img": "https://via.placeholder.com/180/006400/ffffff?text=Amina",
+    "occupation": "Teacher",
+    "position": "Principal at Maple Academy",
+    "marital": "Widowed",
+    "country": "Canada"
+  }
+]
