@@ -5,6 +5,96 @@
   <title>Alumni Registration — ACHSOSA '93 SET</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Navbar base */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-img {
+      height: 40px;
+    }
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        padding: 10px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Form styles (basic) */
+    .section {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: #0073e6;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: #005bb5;
+    }
+  </style>
 </head>
 <body>
 
@@ -59,6 +149,11 @@
   <script src="script.js"></script>
   <script src="footer.js"></script>
   <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
     // Form submission to JSON backend
     const form = document.getElementById('registrationForm');
 
