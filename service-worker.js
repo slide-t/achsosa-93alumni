@@ -11,6 +11,7 @@ const ASSETS_TO_CACHE = [
   '/img/slide5.jpg',
   '/favicon.ico',
   '/gallery.html',
+  '/footer.html',
   // add other assets you want cached
 ];
 
