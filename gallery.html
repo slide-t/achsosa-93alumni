@@ -3,64 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <title>ACHSOSA '93 SET GALLERY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* Responsive Gallery */
+    /* --- Gallery Styles --- */
     .gallery-section {
       padding: 20px;
       text-align: center;
     }
+
     .gallery-title {
-      font-size: 24px;
+      font-size: 1.8rem;
       margin-bottom: 15px;
     }
+
     .gallery-grid {
-      display: flex;
-      overflow: hidden;
-      position: relative;
-      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
     }
+
     .gallery-item {
-      flex: 0 0 100%;
-      transition: transform 0.5s ease-in-out;
-      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
+
     .gallery-item img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
-    }
-    .caption {
-      margin-top: 8px;
-      font-size: 14px;
-      font-weight: bold;
+      display: block;
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
 
-    /* Arrows */
-    .prev, .next {
-      cursor: pointer;
+    .gallery-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 5px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 8px;
+    }
+
+    .lightbox-caption {
+      margin-top: 10px;
+      color: #fff;
+    }
+
+    .lightbox .close, .lightbox .prev, .lightbox .next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      padding: 12px;
-      color: white;
-      background: rgba(0,0,0,0.5);
-      border-radius: 50%;
-      font-size: 18px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 10px;
       user-select: none;
     }
-    .prev { left: 10px; }
-    .next { right: 10px; }
-    @media(max-width: 768px) {
-      .gallery-title { font-size: 20px; }
-      .caption { font-size: 12px; }
+
+    .lightbox .close {
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
     }
+
+    .lightbox .prev { left: 20px; }
+    .lightbox .next { right: 20px; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header / Navbar -->
   <header>
     <div class="logo">
       <img src="images/logo.png" alt="ACHSOSA Logo" class="logo-img">
@@ -81,69 +126,117 @@
   <!-- Gallery Section -->
   <section class="gallery-section">
     <h2 class="gallery-title">ACHSOSA '93 Gallery</h2>
-    <div class="gallery-grid" id="galleryGrid"></div>
-    <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
-    <a class="next" onclick="moveSlide(1)">&#10095;</a>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- JSON images will populate here -->
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+      <span class="close">&times;</span>
+      <img class="lightbox-img" src="" alt="">
+      <div class="lightbox-caption"></div>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
+    </div>
   </section>
 
   <!-- Footer -->
   <div id="footer-container"></div>
 
-  <script src="footer.js"></script>
+  <!-- Scripts -->
+  <script src="script.js"></script> <!-- navbar toggle -->
+  <script src="footer.js"></script> <!-- footer loader -->
+
   <script>
-    // ===== Navbar Toggle =====
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("show");
-    }
-
-    // ===== Gallery JSON Loader =====
-    let currentIndex = 0;
-    let slides = [];
-    let autoSlideInterval;
-
+    // Load Gallery from JSON
     async function loadGallery() {
+  try {
+    const res = await fetch("https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/gallery.json", { cache: "no-store" });
+    const data = await res.json();
+    const galleryGrid = document.getElementById("galleryGrid");
+
+    galleryGrid.innerHTML = ""; // clear in case of reload
+
+    data.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.classList.add("gallery-item");
+      div.innerHTML = `
+        <img src="${item.src}" alt="${item.alt}" data-index="${index}">
+        <div class="caption">${item.caption}</div>
+      `;
+      galleryGrid.appendChild(div);
+    });
+
+    initLightbox(data);
+  } catch (err) {
+    console.error("Error loading gallery:", err);
+  }
+}
+    
+    
+    
+    
+    /*async function loadGallery() {
       try {
-        const response = await fetch("gallery.json");
-        const data = await response.json();
+        const res = await fetch("gallery.json", {cache: "no-store"});
+        const data = await res.json();
         const galleryGrid = document.getElementById("galleryGrid");
 
-        galleryGrid.innerHTML = data.map((item, index) => `
-          <div class="gallery-item" style="transform: translateX(${index * 100}%);">
-            <img src="${item.src}" alt="${item.alt}" loading="lazy">
+        data.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.classList.add("gallery-item");
+          div.innerHTML = `
+            <img src="${item.src}" alt="${item.alt}" data-index="${index}">
             <div class="caption">${item.caption}</div>
-          </div>
-        `).join("");
+          `;
+          galleryGrid.appendChild(div);
+        });
 
-        slides = document.querySelectorAll(".gallery-item");
-        startAutoSlide();
+        initLightbox(data);
       } catch (err) {
         console.error("Error loading gallery:", err);
       }
-    }
+    }*/
 
-    // ===== Slideshow Logic =====
-    function moveSlide(step) {
-      currentIndex = (currentIndex + step + slides.length) % slides.length;
-      updateSlide();
-      resetAutoSlide();
-    }
+    // Lightbox functionality
+    function initLightbox(images) {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = lightbox.querySelector(".lightbox-img");
+      const lightboxCaption = lightbox.querySelector(".lightbox-caption");
+      const closeBtn = lightbox.querySelector(".close");
+      const prevBtn = lightbox.querySelector(".prev");
+      const nextBtn = lightbox.querySelector(".next");
 
-    function updateSlide() {
-      slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(${100 * (index - currentIndex)}%)`;
+      let currentIndex = 0;
+
+      document.querySelectorAll(".gallery-item img").forEach(img => {
+        img.addEventListener("click", () => {
+          currentIndex = parseInt(img.dataset.index);
+          showImage(currentIndex);
+        });
+      });
+
+      function showImage(index) {
+        lightbox.style.display = "flex";
+        lightboxImg.src = images[index].src;
+        lightboxCaption.textContent = images[index].caption;
+      }
+
+      closeBtn.addEventListener("click", () => lightbox.style.display = "none");
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+      });
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) lightbox.style.display = "none";
       });
     }
 
-    function startAutoSlide() {
-      autoSlideInterval = setInterval(() => moveSlide(1), 5000);
-    }
-
-    function resetAutoSlide() {
-      clearInterval(autoSlideInterval);
-      startAutoSlide();
-    }
-
-    // Load gallery on page load
     loadGallery();
   </script>
 </body>
