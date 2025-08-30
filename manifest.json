@@ -7,5 +7,41 @@
     "position": "President",
     "marital": "Married",
     "country": "Nigeria"
-  }
+  },
+   {
+    "rank": "President",
+    "name": "Jane Doe",
+    "img": "images/jane.jpg",
+    "occupation": "Project Manager",
+    "position": "President",
+    "marital": "Married",
+    "country": "Nigeria"
+   },
+   {
+    "rank": "President",
+    "name": "Jane Doe",
+    "img": "images/jane.jpg",
+    "occupation": "Project Manager",
+    "position": "President",
+    "marital": "Married",
+    "country": "Nigeria"
+   },
+   {
+    "rank": "President",
+    "name": "Jane Doe",
+    "img": "images/jane.jpg",
+    "occupation": "Project Manager",
+    "position": "President",
+    "marital": "Married",
+    "country": "Nigeria"
+   },
+   {
+    "rank": "President",
+    "name": "Jane Doe",
+    "img": "images/jane.jpg",
+    "occupation": "Project Manager",
+    "position": "President",
+    "marital": "Married",
+    "country": "Nigeria"
+   }
 ]
