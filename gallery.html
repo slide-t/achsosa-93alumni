@@ -7,7 +7,37 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+/* Navbar default hidden on small screens */
+#navLinks {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
 
+/* Show when toggled */
+#navLinks.show {
+  display: flex;
+}
+
+/* Desktop view */
+@media (min-width: 768px) {
+  #navLinks {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    box-shadow: none;
+    background: transparent;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
   /* Default hidden on mobile */
 #navLinks {
   display: none;
