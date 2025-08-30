@@ -343,10 +343,27 @@
   </footer>
 
   <script>
-    /* Menu Toggle */
+
+/* Menu Toggle */
+function toggleMenu() {
+  const nav = document.getElementById("navLinks");
+  nav.classList.toggle("show");
+}
+
+// Auto-close menu when a link is clicked (for mobile)
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    const nav = document.getElementById("navLinks");
+    if (nav.classList.contains("show")) {
+      nav.classList.remove("show");
+    }
+  });
+});
+    
+    /* Menu Toggle *
     function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("show");
-    }
+    }*/
 
     /* Collapsible Sections */
     document.querySelectorAll(".collapsible").forEach(button => {
