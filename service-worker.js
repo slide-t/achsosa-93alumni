@@ -1,19 +1,18 @@
-const CACHE_NAME = 'achsosa-cache-v3';
+const CACHE_NAME = 'achsosa-cache-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/gallery.html',
-  '/footer.html',
+  '/footer.html',        // pre-cache footer
   '/css/style.css',
   '/js/script.js',
+  '/images/favicon-32x32.png',
   '/images/achsosa2.jpg',
   '/images/achsosa3.jpg',
   '/images/achsosa7.jpg',
   '/images/slide4.jpg',
   '/images/slide5.jpg',
-  '/images/achsosaazeez.jpg',
-  '/images/favicon-32x32.png',
-  '/images/offline-placeholder.png' // offline fallback image
+  // add any other assets you want cached
 ];
 
 // Install event – cache all assets
@@ -25,7 +24,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate event – remove old caches
+// Activate event – clean old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -39,12 +38,13 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch event – cache-first with background update & image fallback
+// Fetch event – cache with network update (stale-while-revalidate)
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       const fetchPromise = fetch(event.request)
         .then(networkResponse => {
+          // Update cache with latest response
           if (networkResponse && networkResponse.status === 200) {
             caches.open(CACHE_NAME).then(cache => {
               cache.put(event.request, networkResponse.clone());
@@ -52,17 +52,14 @@ self.addEventListener('fetch', event => {
           }
           return networkResponse;
         })
-        .catch(() => {
-          // HTML pages fallback
-          if (event.request.destination === 'document') {
-            return caches.match('/index.html');
-          }
-          // Image fallback
-          if (event.request.destination === 'image') {
-            return caches.match('/images/offline-placeholder.png');
-          }
-        });
+        .catch(() => null); // fallback if offline
 
+      // Always serve footer.html from network if available, else fallback to cache
+      if (event.request.url.endsWith('footer.html')) {
+        return fetchPromise.then(resp => resp || cachedResponse);
+      }
+
+      // For other assets: serve cache first, update in background
       return cachedResponse || fetchPromise;
     })
   );
