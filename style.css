@@ -360,6 +360,42 @@ footer {
     grid-template-columns: 1fr; /* 1 column on very small screens */
   }
 }
+
+
+/* === alumni registration form ===*/
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+form input, form textarea, form button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background-color: #006622;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background-color: #004d1a;
+}
+
+@media (max-width: 480px) {
+  form {
+    padding: 0 1rem;
+  }
+}
+
 /* === Scroll to Top Button === */
 #scrollTop {
   position: fixed;
