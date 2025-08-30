@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alumni Registration — ACHSOSA '93 SET</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png" alt="ACHSOSA Logo" class="logo-img">
+      ACHSOSA '93 SET <i class="fas fa-graduation-cap"></i>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Projects</a>
+      <a href="#">Events</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="alumni.html">Alumni Registration</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Registration Form -->
+  <section class="section">
+    <h2>Alumni Registration</h2>
+    <form id="registrationForm">
+      <label>Full Name</label>
+      <input type="text" name="fullname" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Phone Number</label>
+      <input type="tel" name="phone" required>
+
+      <label>Graduation Year</label>
+      <input type="number" name="graduationYear" required min="1970" max="2030">
+
+      <label>Occupation</label>
+      <input type="text" name="occupation">
+
+      <label>Comments</label>
+      <textarea name="comments" rows="4"></textarea>
+
+      <button type="submit">Submit Registration</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="footer.js"></script>
+  <script>
+    // Form submission to JSON backend
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const alumni = {
+        fullname: form.fullname.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        graduationYear: form.graduationYear.value,
+        occupation: form.occupation.value,
+        comments: form.comments.value
+      };
+
+      try {
+        const response = await fetch('/.netlify/functions/saveRegistration', {
+          method: 'POST',
+          body: JSON.stringify(alumni),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const result = await response.json();
+        alert(result.message);
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        alert('Submission failed. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
