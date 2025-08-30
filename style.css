@@ -1,4 +1,126 @@
- .logo {
+<style>
+    /* === Variables === */
+    :root {
+      --bg-color: #fff;
+      --text-color: #000;
+      --accent-color: #000;
+      --card-bg: #f4f4f4;
+      --hover-color: #555;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+    }
+
+    /* === Header === */
+    header {
+      background-color:#006622/*var(--accent-color)*/;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+.menu-toggle {
+      display: none;
+      font-size: 32px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* === Navigation === */
+    nav {
+      display: flex;
+      gap: 2rem;
+      flex-direction: column; /* stacked on mobile */
+    }
+
+    nav a {
+      color: #000;
+      text-decoration: none;
+      font-size: 24px;
+      transition: color 0.3s ease;
+      opacity: 0;
+      margin:15px auto;
+      transform: translateX(-20px);
+      animation: slideIn 0.5s forwards;
+    }
+
+    nav a:hover { color: var(--hover-color); }
+
+    nav a:nth-child(1) { animation-delay: 0.1s; }
+    nav a:nth-child(2) { animation-delay: 0.2s; }
+    nav a:nth-child(3) { animation-delay: 0.3s; }
+    nav a:nth-child(4) { animation-delay: 0.4s; }
+    nav a:nth-child(5) { animation-delay: 0.5s; }
+    nav a:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes slideIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Desktop nav */
+    @media (min-width: 768px) {
+      nav { flex-direction: row; }
+      nav a { opacity: 1; transform: translateX(0); animation: none; }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color:#fff/*var(--accent-color)*/;
+        position: absolute;
+        top: 90px;
+        right: 0;
+        width: 100%;
+      }
+      nav.show { display: flex; }
+      .menu-toggle { display: block; top:70px}
+    }
+
+    /* === Sections & Collapsibles === */
+    .section { padding: 2rem; border-bottom: 1px solid #ccc; }
+    .collapsible {
+      cursor: pointer;
+      background-color: var(--card-bg) ;
+      padding: 1rem;
+      font-weight: bold;
+      border: none;
+      text-align: left;
+      outline: none;
+      width: 100%;
+      transition: background 0.3s ease;
+      margin-bottom: 1rem;
+      color: /*var(--text-color)*/#009933 ;
+      font-size: 1.6rem;
+    }
+    .collapsible:hover { background-color: #ddd; }
+    .content {
+      display: none;
+      padding: 1rem;
+      background-color: #eee;
+      animation: flipIn 0.6s ease;
+      font-size: 16px;
+    }
+    .content p {
+     font-size: 24px;
+  text-align:justify;
+    }
+    @keyframes flipIn {
+      from { transform: rotateX(-90deg); opacity: 0; }
+      to { transform: rotateX(0); opacity: 1; }
+    }
+
+
+
+.logo {
   display: flex;
   align-items: center;
   gap: 10px; /* spacing between image and text */
