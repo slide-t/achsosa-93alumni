@@ -223,6 +223,7 @@
       </div>
     </section>
   </div>
+  <!--
 <script>
     /* ===== Mobile Menu ===== */
     function toggleMenu(){
@@ -338,11 +339,8 @@
       });
     });
 </script>
+-->
 
-
-
-
-  <!--
   <script>
     /* ===== Mobile Menu ===== */
     function toggleMenu(){
@@ -358,7 +356,7 @@
     });
 
     /* ===== Members Data (via JSON with fallback) ===== */
-    let MEMBERS = [
+    /*let MEMBERS = [
       { rank: "President", name: "Jane Doe", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop", occupation: "Project Manager", position: "President", marital: "Married", country: "Nigeria" },
       { rank: "Vice President", name: "Michael Smith", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop", occupation: "Engineer", position: "Vice President", marital: "Single", country: "UK" },
       { rank: "General Secretary", name: "Aisha Bello", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop", occupation: "Lawyer", position: "General Secretary", marital: "Married", country: "USA" },
@@ -419,7 +417,7 @@ document.getElementById("membersBtn").addEventListener("click", () => {
 });
 
     
-   /* function showMember(index, source = MEMBERS){
+    function showMember(index, source = MEMBERS){
       const m = source[index];
       // Fill card
       imgEl.src = m.img || '';
@@ -478,6 +476,6 @@ document.getElementById("search").addEventListener("input", (e) => {
       containerEl.classList.add('show');
     })();
   </script>
-  -->
+  
 </body>
 </html>
