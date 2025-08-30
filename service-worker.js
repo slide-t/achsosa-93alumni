@@ -6,6 +6,7 @@ const ASSETS_TO_CACHE = [
   '/footer.html',        // pre-cache footer
   '/css/style.css',
   '/js/script.js',
+  '/json/gallery.json',
   '/images/favicon-32x32.png',
   '/images/achsosa2.jpg',
   '/images/achsosa3.jpg',
