@@ -254,8 +254,8 @@ footer {
 .footer-left a, .footer-right a { display: block; color: #fff; margin: 0.5rem 0; text-decoration: none; }
 .footer-left a:hover, .footer-right a:hover { color: var(--hover-color); }
 
-.social-icons { display: flex; gap: 15px; flex-wrap: wrap; }
-.social-icons a { font-size: 1.3rem; transition: transform 0.3s ease; }
+.social-icons { display: flex; gap: 20px; flex-wrap: wrap; }
+.social-icons a { font-size: 1.8rem; transition: transform 0.3s ease; }
 .social-icons a:hover { transform: scale(1.2); color: var(--hover-color); }
 
 /* Footer layout on desktop */
