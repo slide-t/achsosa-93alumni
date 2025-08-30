@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members — ACHSOSA '93 SET</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      color: #232f3e;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    header .logo {
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-img {
+      height: 40px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #006400;
+    }
+
+    /* Members Layout */
+    .members-container {
+      display: flex;
+      max-width: 1100px;
+      margin: 30px auto;
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .members-list {
+      flex: 1;
+      background: #f8f9f9;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 15px;
+      overflow-y: auto;
+      max-height: 600px;
+    }
+    .members-list h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #006400;
+    }
+    .members-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .members-list li {
+      padding: 12px;
+      margin-bottom: 6px;
+      background: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .members-list li:hover {
+      background: #e8f5e9;
+    }
+
+    .member-details {
+      flex: 2;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .member-details img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid #006400;
+    }
+    .member-details h3 {
+      margin: 8px 0;
+      color: #006400;
+    }
+    .member-details p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .members-container {
+        flex-direction: column;
+      }
+      .members-list {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png" class="logo-img" alt="ACHSOSA Logo">
+      ACHSOSA '93 SET <i class="fas fa-graduation-cap"></i>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="members.html">Members</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Members Section -->
+  <section class="members-container">
+    <!-- List of Members -->
+    <div class="members-list">
+      <h2>Our Members</h2>
+      <ul id="memberList"></ul>
+    </div>
+
+    <!-- Member Details -->
+    <div class="member-details" id="memberDetails">
+      <img src="https://via.placeholder.com/180" alt="Profile">
+      <h3>Select a member</h3>
+      <p>Click a name on the left to view details.</p>
+    </div>
+  </section>
+
+  <script>
+    let membersData = [];
+
+    // Load members.json
+    fetch("members.json")
+      .then(res => res.json())
+      .then(data => {
+        membersData = data;
+        const list = document.getElementById("memberList");
+        list.innerHTML = data.map(m => `<li onclick="showMember('${m.id}')">${m.name}</li>`).join("");
+      });
+
+    function showMember(id) {
+      const m = membersData.find(member => member.id === id);
+      const details = document.getElementById("memberDetails");
+      details.innerHTML = `
+        <img src="${m.img}" alt="${m.name}">
+        <h3>${m.name}</h3>
+        <p><strong>Occupation:</strong> ${m.occupation}</p>
+        <p><strong>Marital Status:</strong> ${m.marital}</p>
+        <p><strong>Country:</strong> ${m.country}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
