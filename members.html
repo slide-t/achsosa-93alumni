@@ -3,241 +3,253 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Army Children High School Epe — Members</title>
+  <title>Members – Army Children High School Epe</title>
   <style>
-    /* ===== Reset ===== */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: Arial, sans-serif; background:#fff; color:#333; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #fff;
+      color: #333;
+    }
 
     /* ===== Navbar ===== */
     header {
-      background: green;
-      color:#fff;
-      padding:12px 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:sticky;
-      top:0; z-index:1000;
+      background: #006400;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0; z-index: 1000;
     }
-    header h1 { font-size:18px; }
-    nav { display:flex; }
-    nav ul { display:flex; list-style:none; }
-    nav ul li { margin-left:20px; }
-    nav ul li a { color:#fff; text-decoration:none; font-size:16px; }
-
-    /* Mobile */
-    .menu-toggle { display:none; cursor:pointer; font-size:22px; }
-    @media(max-width:768px){
-      nav { display:none; flex-direction:column; background:green; position:absolute; top:60px; left:0; right:0; }
-      nav.show { display:flex; }
-      nav ul { flex-direction:column; }
-      nav ul li { margin:10px 0; text-align:center; }
-      .menu-toggle { display:block; }
+    header h1 { font-size: 20px; margin: 0; }
+    nav { display: flex; gap: 15px; }
+    nav a {
+      color: #fff; text-decoration: none;
+      font-size: 18px; position: relative;
     }
+    nav a::after {
+      content: ""; position: absolute; left: 0; bottom: -5px;
+      width: 0%; height: 2px; background: #fff;
+      transition: width .3s;
+    }
+    nav a:hover::after { width: 100%; }
 
     /* ===== Members Button ===== */
     .members-btn {
-      width:100%;
-      padding:15px;
-      font-size:18px;
-      font-weight:bold;
-      color:green;
-      background:#fff;
-      border:none;
-      cursor:pointer;
-      box-shadow:0 4px 6px rgba(0,0,0,0.1);
-      transition: background .3s;
+      display: block;
+      width: 100%;
+      background: #fff;
+      border: none;
+      padding: 15px;
+      font-size: 20px;
+      color: #006400;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      text-align: center;
+      position: relative;
     }
-    .members-btn:hover { background:#f9f9f9; }
+    .members-btn:hover::after {
+      content: "Click to view members";
+      position: absolute;
+      bottom: -25px; left: 50%; transform: translateX(-50%);
+      background: #333; color: #fff; padding: 4px 8px;
+      border-radius: 5px; font-size: 12px;
+      white-space: nowrap;
+    }
 
-    /* ===== Search ===== */
-    #searchArea { margin:15px 0; display:none; }
+    /* ===== Search Box ===== */
     .search-box {
-      width:100%; padding:10px; font-size:16px;
-      border:1px solid #ddd; border-radius:6px;
+      padding: 15px;
+      text-align: center;
+    }
+    .search-box input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
     }
 
-    /* ===== Members Container ===== */
-    .members-container {
-      display:none;
-      position:relative;
-      animation: slideInLeft .5s ease forwards;
-      min-height:400px;
+    /* ===== Flip Containers ===== */
+    .panel {
+      position: absolute;
+      top: 70px; left: 0;
+      width: 100%; height: calc(100% - 70px);
+      background: #f9f9f9;
+      backface-visibility: hidden;
+      transform: translateX(-100%);
+      transition: transform .5s ease;
+      overflow-y: auto;
+      padding-bottom: 50px;
     }
-    .members-container.show { display:block; }
-    .member-list { list-style:none; padding:0; margin:0; }
+    .panel.show { transform: translateX(0); }
+
+    .card {
+      position: absolute;
+      top: 70px; right: 0;
+      width: 100%; height: calc(100% - 70px);
+      background: #fff;
+      box-shadow: -2px 0 6px rgba(0,0,0,0.2);
+      transform: translateX(100%);
+      transition: transform .5s ease;
+      overflow-y: auto;
+      padding-bottom: 50px;
+    }
+    .card.show { transform: translateX(0); }
+
+    /* ===== Members List ===== */
+    #memberList { list-style: none; margin: 0; padding: 0; }
     .member-item {
-      padding:12px;
-      border-bottom:1px solid #ddd;
-      cursor:pointer;
-      display:flex; justify-content:space-between;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      display: flex; justify-content: space-between;
     }
-    .member-item:hover { background:#f5f5f5; }
+    .member-item:hover { background: #eee; }
 
     /* ===== Member Card ===== */
-    .member-card {
-      display:none;
-      animation: slideInRight .5s ease forwards;
-      background:#fff;
-      padding:20px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.15);
-      border-radius:8px;
+    .card img {
+      width: 100%; height: 250px; object-fit: cover;
     }
-    .member-card.show { display:block; }
-    .member-photo { width:100%; height:250px; object-fit:cover; margin-bottom:15px; border-radius:6px; }
-    .close-btn {
-      float:right;
-      font-size:24px;
-      background:none;
-      border:none;
-      cursor:pointer;
-      color:red;
+    .card .details {
+      padding: 15px;
+      text-align: left;
     }
+    .card button.close-btn {
+      background: #006400;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin: 15px;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .card button.close-btn:hover { background: #004d00; }
 
-    /* ===== Animations ===== */
-    @keyframes slideInLeft { from{transform:translateX(-100%);} to{transform:translateX(0);} }
-    @keyframes slideOutLeft { from{transform:translateX(0);} to{transform:translateX(-100%);} }
-    @keyframes slideInRight { from{transform:translateX(100%);} to{transform:translateX(0);} }
-    @keyframes slideOutRight { from{transform:translateX(0);} to{transform:translateX(100%);} }
-
-    main { padding:20px; }
+    @media (max-width: 600px) {
+      nav { display: none; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ===== Navbar ===== -->
-  <header>
-    <h1>Army Children High School Epe</h1>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav id="navLinks">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Members</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <h1>Army Children High School Epe</h1>
+  <nav id="navLinks">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Members</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
 
-  <!-- ===== Main Section ===== -->
-  <main>
-    <!-- Button -->
-    <button id="membersBtn" class="members-btn" title="Click to view members">Members List</button>
+<button id="membersBtn" class="members-btn">Members List</button>
 
-    <!-- Search -->
-    <div id="searchArea">
-      <input id="searchInput" type="text" placeholder="Search by name or country..." class="search-box">
-    </div>
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search by name or country...">
+</div>
 
-    <!-- Members List -->
-    <div id="membersContainer" class="members-container">
-      <ul id="memberList" class="member-list"></ul>
-    </div>
+<!-- Members List Panel -->
+<div id="membersContainer" class="panel">
+  <ul id="memberList"></ul>
+</div>
 
-    <!-- Member Card -->
-    <div id="memberCard" class="member-card">
-      <button onclick="closeMemberCard()" class="close-btn">×</button>
-      <img id="memberImg" src="" alt="Member" class="member-photo">
-      <h2 id="memberName"></h2>
-      <p><strong>Occupation:</strong> <span id="memberOccupation"></span></p>
-      <p><strong>Position:</strong> <span id="memberPosition"></span></p>
-      <p><strong>Marital Status:</strong> <span id="memberMarital"></span></p>
-      <p><strong>Country:</strong> <span id="memberCountry"></span></p>
-    </div>
-  </main>
+<!-- Member Card -->
+<div id="memberCard" class="card">
+  <button class="close-btn" onclick="closeMemberCard()">Close</button>
+  <img id="memberImg" src="" alt="Member">
+  <div class="details">
+    <h2 id="memberName"></h2>
+    <p><strong>Occupation:</strong> <span id="memberOccupation"></span></p>
+    <p><strong>Position:</strong> <span id="memberPosition"></span></p>
+    <p><strong>Marital Status:</strong> <span id="memberMarital"></span></p>
+    <p><strong>Country:</strong> <span id="memberCountry"></span></p>
+  </div>
+</div>
 
-  <script>
-    /* ===== Mobile Menu ===== */
-    function toggleMenu(){
-      const nav = document.getElementById('navLinks');
-      nav.classList.toggle('show');
-    }
-    document.addEventListener('click',(e)=>{
-      const nav=document.getElementById('navLinks');
-      if(e.target.closest('#navLinks a') && nav.classList.contains('show')){
-        nav.classList.remove('show');
-      }
-    });
+<script>
+let MEMBERS = [
+  { rank: "President", name: "Jane Doe", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200", occupation: "Project Manager", position: "President", marital: "Married", country: "Nigeria" },
+  { rank: "Vice President", name: "Michael Smith", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200", occupation: "Engineer", position: "Vice President", marital: "Single", country: "UK" },
+  { rank: "General Secretary", name: "Aisha Bello", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200", occupation: "Lawyer", position: "General Secretary", marital: "Married", country: "USA" },
+  { rank: "Financial Sec.", name: "John Okafor", img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1200", occupation: "Accountant", position: "Financial Secretary", marital: "Married", country: "Canada" },
+  { rank: "Welfare", name: "Mary Johnson", img: "https://images.unsplash.com/photo-1552226028-6c58f4f5c9f0?q=80&w=1200", occupation: "Nurse", position: "Welfare Officer", marital: "Single", country: "Nigeria" }
+];
 
-    /* ===== Members Data ===== */
-    let MEMBERS = [
-      { rank:"President", name:"Jane Doe", img:"https://images.unsplash.com/photo-1544005313-94ddf0286df2", occupation:"Project Manager", position:"President", marital:"Married", country:"Nigeria" },
-      { rank:"Vice President", name:"Michael Smith", img:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e", occupation:"Engineer", position:"Vice President", marital:"Single", country:"UK" },
-      { rank:"General Secretary", name:"Aisha Bello", img:"https://images.unsplash.com/photo-1494790108377-be9c29b29330", occupation:"Lawyer", position:"General Secretary", marital:"Married", country:"USA" }
-    ];
+const listEl = document.getElementById('memberList');
+const containerEl = document.getElementById('membersContainer');
+const cardWrap = document.getElementById('memberCard');
 
-    /* Elements */
-    const listEl = document.getElementById('memberList');
-    const containerEl = document.getElementById('membersContainer');
-    const cardWrap = document.getElementById('memberCard');
-    const searchArea = document.getElementById('searchArea');
+const imgEl = document.getElementById('memberImg');
+const nameEl = document.getElementById('memberName');
+const occEl = document.getElementById('memberOccupation');
+const posEl = document.getElementById('memberPosition');
+const marEl = document.getElementById('memberMarital');
+const ctyEl = document.getElementById('memberCountry');
+const searchEl = document.getElementById('searchInput');
 
-    const imgEl = document.getElementById('memberImg');
-    const nameEl = document.getElementById('memberName');
-    const occEl = document.getElementById('memberOccupation');
-    const posEl = document.getElementById('memberPosition');
-    const marEl = document.getElementById('memberMarital');
-    const ctyEl = document.getElementById('memberCountry');
+// Open list
+document.getElementById('membersBtn').addEventListener('click', ()=>{
+  containerEl.classList.add('show');
+  cardWrap.classList.remove('show');
+});
 
-    /* Open members list */
-    document.getElementById('membersBtn').addEventListener('click', ()=>{
-      containerEl.classList.add('show');
-      searchArea.style.display="block";
-      cardWrap.classList.remove('show');
-      renderList(MEMBERS);
-    });
+// Render list
+function renderList(items){
+  listEl.innerHTML = '';
+  items.forEach((m, idx)=>{
+    const li = document.createElement('li');
+    li.className = 'member-item';
+    li.setAttribute('data-country', m.country || '');
+    li.innerHTML = `
+      <span class="member-rank">${m.rank || ''}</span>
+      <div>
+        <div class="member-name">${m.name}</div>
+        <div class="member-meta">${m.country || ''}</div>
+      </div>
+    `;
+    li.addEventListener('click', ()=>showMember(idx, items));
+    listEl.appendChild(li);
+  });
+}
 
-    /* Render list */
-    function renderList(items){
-      listEl.innerHTML='';
-      items.forEach((m,idx)=>{
-        const li=document.createElement('li');
-        li.className='member-item';
-        li.setAttribute("data-country", m.country || "");
-        li.innerHTML=`<span>${m.rank || ''}</span><div>${m.name} <small>${m.country||''}</small></div>`;
-        li.addEventListener('click',()=>showMember(idx,items));
-        listEl.appendChild(li);
-      });
-    }
+// Show card
+function showMember(index, source=MEMBERS){
+  const m = source[index];
+  imgEl.src = m.img || '';
+  imgEl.alt = m.name;
+  nameEl.textContent = m.name || '';
+  occEl.textContent = m.occupation || '';
+  posEl.textContent = m.position || m.rank || '';
+  marEl.textContent = m.marital || '';
+  ctyEl.textContent = m.country || '';
 
-    /* Show card */
-    function showMember(index,source=MEMBERS){
-      const m=source[index];
-      imgEl.src=m.img||''; imgEl.alt=m.name||'';
-      nameEl.textContent=m.name||'';
-      occEl.textContent=m.occupation||'';
-      posEl.textContent=m.position||m.rank||'';
-      marEl.textContent=m.marital||'';
-      ctyEl.textContent=m.country||'';
+  containerEl.classList.remove('show');
+  setTimeout(()=>cardWrap.classList.add('show'), 300);
+}
 
-      containerEl.style.animation="slideOutLeft .4s forwards";
-      setTimeout(()=>{
-        containerEl.classList.remove('show');
-        cardWrap.classList.add('show');
-      },400);
-    }
+// Close card
+function closeMemberCard(){
+  cardWrap.classList.remove('show');
+  setTimeout(()=>containerEl.classList.add('show'), 300);
+}
 
-    /* Close card */
-    function closeMemberCard(){
-      cardWrap.style.animation="slideOutRight .4s forwards";
-      setTimeout(()=>{
-        cardWrap.classList.remove('show');
-        containerEl.classList.add('show');
-        containerEl.style.animation="slideInLeft .4s forwards";
-      },400);
-    }
+// Search by name or country
+searchEl.addEventListener('input', (e)=>{
+  const q = e.target.value.toLowerCase();
+  const filtered = MEMBERS.filter(m=>
+    m.name.toLowerCase().includes(q) || (m.country||'').toLowerCase().includes(q)
+  );
+  renderList(filtered);
+});
 
-    /* Search */
-    document.getElementById("searchInput").addEventListener("input",(e)=>{
-      const q=e.target.value.toLowerCase();
-      const items=document.querySelectorAll(".member-item");
-      items.forEach(item=>{
-        const text=item.textContent.toLowerCase();
-        const country=item.getAttribute("data-country")?.toLowerCase()||"";
-        item.style.display=(text.includes(q)||country.includes(q))?"flex":"none";
-      });
-    });
-  </script>
+// Init
+renderList(MEMBERS);
+</script>
+
 </body>
 </html>
