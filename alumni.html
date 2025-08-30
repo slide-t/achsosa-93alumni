@@ -140,7 +140,52 @@ nav a.active {
     </nav>
   </header>
 
-  <!-- Registration Form -->
+<!-- Registration Form -->
+<section class="section">
+  <h2>Alumni Registration</h2>
+  <form id="registrationForm" class="form-box">
+    
+    <label>Full Name</label>
+    <input type="text" name="fullname" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Phone Number</label>
+    <input type="tel" name="phone" required>
+
+    <label>Graduation Year</label>
+    <select name="graduationYear" id="graduationYear" required></select>
+
+    <label>Occupation</label>
+    <input type="text" name="occupation" required>
+
+    <label>Comments</label>
+    <textarea name="comments" rows="4" required></textarea>
+
+    <button type="submit">Submit Registration</button>
+  </form>
+</section>
+
+<script>
+  // Populate graduation year options dynamically (descending order)
+  const gradSelect = document.getElementById("graduationYear");
+  const startYear = 1970;
+  const currentYear = new Date().getFullYear();
+  const endYear = currentYear + 5; // auto-extend 5 years ahead
+
+  for (let year = endYear; year >= startYear; year--) {
+    let option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+    if (year === endYear) {
+      option.selected = true; // Auto-select the latest year
+    }
+    gradSelect.appendChild(option);
+  }
+</script>
+  
+  <!-- Registration Form --
   <section class="section">
     <h2>Alumni Registration</h2>
     <form id="registrationForm" class="form-box">
@@ -165,7 +210,7 @@ nav a.active {
       <button type="submit">Submit Registration</button>
     </form>
   </section>
-
+-->
   <!-- Footer -->
   <div id="footer-container"></div>
 
