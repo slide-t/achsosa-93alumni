@@ -156,7 +156,45 @@
     .slider-dots .dot.active { opacity: 1; }
 
 
-.logo {
+
+    /* === Footer === */
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background-color: var(--accent-color);
+      padding: 2rem;
+      color: #fff;
+    }
+    .footer-left, .footer-right { flex: 1 1 300px; padding: 1rem; }
+    .footer-left h4, .footer-right h4 { margin-bottom: 1rem; }
+    .footer-left a, .footer-right a {
+      display: block;
+      color: #fff;
+      margin: 0.5rem 0;
+      text-decoration: none;
+    }
+    .footer-left a:hover, .footer-right a:hover { color: var(--hover-color); }
+    .social-icons a { margin-right: 1rem; color: #fff; font-size: 1.2rem; }
+    .social-icons a:hover { color: var(--hover-color); }
+
+    /* === Scroll to Top === */
+    #scrollTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      z-index: 1200;
+    }
+    #scrollTop:hover { background: var(--hover-color); }
+ .logo {
   display: flex;
   align-items: center;
   gap: 10px; /* spacing between image and text */
