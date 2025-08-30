@@ -231,11 +231,9 @@
       padding:24px auto;
     }
     
-  </style>
-  
+  </style>  
 </head>
 <body>
-
   <header>
    <!-- <div class="logo"> ACHSOSA '93 SET<i class="fas fa-graduation-cap"></i></div>-->
     <div class="logo">
@@ -252,8 +250,6 @@
       <a href="#">Contact</a>
     </nav>
   </header>
-
-  
   <!-- Slider -->
   <section class="slider-section">
     <div class="slider-container">
@@ -286,21 +282,13 @@
       <span class="dot" onclick="showSlide(4)"></span>
     </div>
   </section>
-
-  <!-- Collapsible Sections -->
+<!-- Collapsible Sections -->
   <div class="section">
   <button class="collapsible">About ACHSOSA '93 ⬇</button>
   <div class="content">
     <p>ACHSOSA '93 SET Alumni Association is a vibrant and dedicated community of graduates from Army Children High School Epe. Our members are committed to fostering lifelong connections, supporting the growth of our alma mater, and contributing positively to society through service, leadership, and collaborative initiatives. We celebrate our shared heritage while inspiring current and future generations to excel.</p>
   </div>
 </div>
-  <!--<div class="section">
-    <button class="collapsible">About ACHSOSA '93 ⬇</button>
-    <div class="content">
-      <p>ACHSOSA '93 SET Alumni Association is a community of proud graduates...</p>
-    </div>
-  </div>-->
-
   <div class="section">
     <button class="collapsible">Our School Anthem ⬇</button>
     <div class="content"><p><strong>School Anthem (Sample)</strong></p></div>
@@ -312,23 +300,13 @@
     <p><strong>Mission:</strong> "ACHSOSA '93 SET Alumni exists to connect and empower graduates, support the development of our alma mater, foster professional and personal growth among members, promote community engagement, and preserve the traditions and values of Army Children High School Epe."</p>
   </div>
 </div>
-
-  <!--<div class="section">
-    <button class="collapsible">Our Vision & Mission ⬇</button>
-    <div class="content"><p><strong>Vision:</strong> To be a united alumni body...</p></div>
-  </div>-->
-
   <div class="section">
     <button class="collapsible">Our Projects & Achievements ⬇</button>
     <div class="content"><p>Over the years, ACHSOSA '93 has embarked on projects...</p></div>
   </div>
-
 <!-- Scroll to Top -->
   <button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
-
-  
-
-  <!-- Footer -->
+ <!-- Footer -->
   <footer>
     <div class="footer-left">
       <h4>Follow Us</h4>
@@ -403,57 +381,7 @@ document.querySelectorAll("#navLinks a").forEach(link => {
     });
     scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   </script>
-  
-<!--
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  let slideIndex = 0;
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
 
-  if (slides.length === 0 || dots.length === 0) return; // safety check
-
-  function showSlide(n) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('active');
-      dots[i].classList.remove('active');
-    });
-    slides[n].classList.add('active');
-    dots[n].classList.add('active');
-    slideIndex = n;
-  }
-
-  function nextSlide() {
-    slideIndex = (slideIndex + 1) % slides.length;
-    showSlide(slideIndex);
-  }
-
-  // Initialize first slide
-  showSlide(slideIndex);
-
-  // Auto-slide every 4 seconds
-  setInterval(nextSlide, 4000);
-
-  // Dot click events
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => showSlide(i));
-  });
-});
-</script>
-  -->
-
-<script>
-  // Dynamically load footer.html
-  fetch('footer.html')
-    .then(response => {
-      if (!response.ok) throw new Error('Footer not found');
-      return response.text();
-    })
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading footer:', error));
-</script>
   <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
