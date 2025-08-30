@@ -52,6 +52,14 @@ window.addEventListener("scroll", () => {
 });
 scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
+// Dynamically load footer
+fetch('footer.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('footer-placeholder').innerHTML = data;
+  })
+  .catch(error => console.error('Error loading footer:', error));
+
 /* Service Worker */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -64,3 +72,6 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+
+
