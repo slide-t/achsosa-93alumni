@@ -264,7 +264,17 @@ footer {
   .footer-left { flex: 1; }
   .footer-right { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
 }
-
+/* === Gallery Grid Responsive Fix === */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+  }
+}
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr; /* 1 column on very small screens */
+  }
+}
 /* === Scroll to Top Button === */
 #scrollTop {
   position: fixed;
