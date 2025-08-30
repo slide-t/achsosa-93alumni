@@ -1,18 +1,19 @@
-const CACHE_NAME = 'achsosa-cache-v1';
+const CACHE_NAME = 'achsosa-cache-v3';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/css/style.css',    // adjust path if CSS is separate
-  '/js/script.js',       // adjust path if JS is separate
-  '/img/achsosa2.jpg',
-  '/img/achsosa3.jpg',
-  '/img/achsosa7.jpg',
-  '/img/slide4.jpg',
-  '/img/slide5.jpg',
-  '/images/favicon-32x32.png',
   '/gallery.html',
   '/footer.html',
-  // add other assets you want cached
+  '/css/style.css',
+  '/js/script.js',
+  '/images/achsosa2.jpg',
+  '/images/achsosa3.jpg',
+  '/images/achsosa7.jpg',
+  '/images/slide4.jpg',
+  '/images/slide5.jpg',
+  '/images/achsosaazeez.jpg',
+  '/images/favicon-32x32.png',
+  '/images/offline-placeholder.png' // offline fallback image
 ];
 
 // Install event – cache all assets
@@ -24,7 +25,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate event – clean old caches
+// Activate event – remove old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -38,31 +39,31 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch event – serve cached assets first, update cache automatically
+// Fetch event – cache-first with background update & image fallback
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        // Update cache in background
-        fetch(event.request).then(networkResponse => {
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone());
-          });
-        });
-        return cachedResponse;
-      }
-      return fetch(event.request).then(networkResponse => {
-        // Cache new requests
-        return caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, networkResponse.clone());
+      const fetchPromise = fetch(event.request)
+        .then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, networkResponse.clone());
+            });
+          }
           return networkResponse;
+        })
+        .catch(() => {
+          // HTML pages fallback
+          if (event.request.destination === 'document') {
+            return caches.match('/index.html');
+          }
+          // Image fallback
+          if (event.request.destination === 'image') {
+            return caches.match('/images/offline-placeholder.png');
+          }
         });
-      }).catch(() => {
-        // Optional: return offline fallback page or image
-        if (event.request.destination === 'document') {
-          return caches.match('/index.html');
-        }
-      });
+
+      return cachedResponse || fetchPromise;
     })
   );
 });
