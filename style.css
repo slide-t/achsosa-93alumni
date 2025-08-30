@@ -1,1 +1,30 @@
+ .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* spacing between image and text */
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+}
 
+/* Logo image spin */
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 60%;       /* circular-ish look */
+  object-fit: cover;        /* ensures image fits nicely */
+  display: inline-block;
+  animation: spinLogo 10s linear infinite; /* spins every 10 seconds */
+}
+
+/* Keyframes for spinning */
+@keyframes spinLogo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+    #navLinks {
+    top:90px;
+      padding:24px auto;
+    }
+    
+  </style>
