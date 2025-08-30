@@ -44,12 +44,12 @@ header {
   object-fit: cover;
   animation: spinLogo 10s linear infinite;
 }
-
+/*
 @keyframes spinLogo {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
+*/
 /* === Navigation === */
 .menu-toggle {
   display: none;
