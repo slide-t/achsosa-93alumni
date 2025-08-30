@@ -1,22 +1,11 @@
-{
-  "name": "Army Children High School Epe Alumni",
-  "short_name": "ACHSOSA '93",
-  "description": "Official alumni site of Army Children High School Epe, class of 1993",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#2a4d2f",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "/img/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/img/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-}
+[
+  {
+    "rank": "President",
+    "name": "Jane Doe",
+    "img": "images/jane.jpg",
+    "occupation": "Project Manager",
+    "position": "President",
+    "marital": "Married",
+    "country": "Nigeria"
+  }
+]
