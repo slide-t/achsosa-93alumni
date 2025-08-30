@@ -3,7 +3,7 @@ const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/css/style.css',    // adjust path if CSS is separate
-  '/js/main.js',       // adjust path if JS is separate
+  '/js/script.js',       // adjust path if JS is separate
   '/img/achsosa2.jpg',
   '/img/achsosa3.jpg',
   '/img/achsosa7.jpg',
