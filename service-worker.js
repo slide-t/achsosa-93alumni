@@ -7,6 +7,7 @@ const ASSETS_TO_CACHE = [
   '/css/style.css',
   '/js/script.js',
   '/alumni.html',
+  '/members.html',
   '/json/gallery.json',
   '/images/favicon-32x32.png',
   '/images/achsosa2.jpg',
