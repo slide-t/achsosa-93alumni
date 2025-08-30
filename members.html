@@ -5,157 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Army Children High School Epe — Members</title>
   <style>
-    /* ==== Global Styles ==== */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      color: #222;
-      position: relative;
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Faded Circular Logo Container */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: rgba(0, 128, 0, 0.05);
-      z-index: 0;
-    }
-
-    /* ==== Navbar ==== */
     header {
-      background: #014421;
-      color: #fff;
-      padding: 15px;
+      background: #064420;
+      color: white;
+      padding: 1rem;
       text-align: center;
       font-size: 20px;
       font-weight: bold;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 1000;
     }
 
-    /* ==== Button ==== */
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      background: #fff;
-      border: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      color: #014421;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      position: relative;
-      z-index: 2;
-    }
-    .btn:hover { background: #f1f1f1; }
-
-    /* Tooltip */
-    .btn::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      top: -28px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #014421;
-      color: #fff;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.3s;
-    }
-    .btn:hover::after { opacity: 1; }
-
-    /* ==== Search ==== */
-    .search-box {
-      max-height: 0;
-      overflow: hidden;
-      text-align: center;
-      transition: max-height 0.5s ease;
-    }
-    .search-box.show {
-      max-height: 80px;
-      padding: 10px 0;
-    }
-    #searchInput {
-      width: 60%;
+    /* Search bar */
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 10px auto;
       padding: 10px;
-      font-size: 16px;
-      border: 2px solid #014421;
-      border-radius: 25px;
-      outline: none;
-      transition: width 0.4s ease;
     }
-    #searchInput:focus {
+    .search-bar input {
+      width: 220px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      transition: width 0.4s ease;
+      font-size: 16px;
+    }
+    .search-bar input:focus {
       width: 80%;
+      outline: none;
     }
 
-    /* ==== Members List ==== */
+    /* Members button */
+    .members-btn {
+      display: block;
+      margin: 10px auto;
+      background: white;
+      color: #064420;
+      border: 1px solid #064420;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .members-btn:hover {
+      background: #064420;
+      color: white;
+    }
+
+    /* Members list container */
     #membersContainer {
       position: fixed;
-      top: 70px;
+      top: 0;
       left: -100%;
       width: 100%;
-      height: calc(100% - 70px);
-      background: #fff;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+      height: 100%;
+      background: #f9f9f9;
+      padding-top: 70px;
+      transition: left 0.6s ease;
+      z-index: 900;
       overflow-y: auto;
-      transition: left 0.5s ease;
-      z-index: 5;
     }
     #membersContainer.show {
       left: 0;
     }
-    #memberList {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
     .member-item {
       padding: 15px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #ddd;
       cursor: pointer;
-      transition: background 0.3s;
     }
     .member-item:hover {
-      background: #f9f9f9;
-    }
-    .close-list {
-      display: block;
-      text-align: center;
-      padding: 10px;
-      background: #eee;
-      cursor: pointer;
-      font-weight: bold;
+      background: #e8f5e9;
     }
 
-    /* ==== Member Card ==== */
+    .list-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    /* Member card */
     #memberCard {
       position: fixed;
-      top: 70px;
+      top: 0;
       right: -100%;
       width: 100%;
-      max-width: 400px;
-      height: calc(100% - 70px);
+      height: 100%;
       background: #fff;
-      box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-      transition: right 0.5s ease;
-      z-index: 6;
-      display: flex;
-      flex-direction: column;
+      transition: right 0.6s ease;
+      z-index: 950;
+      overflow-y: auto;
+      padding: 20px;
     }
     #memberCard.show {
       right: 0;
@@ -164,77 +120,76 @@
       width: 100%;
       height: 250px;
       object-fit: cover;
+      border-radius: 10px;
     }
-    .card-content {
-      padding: 15px;
-      flex: 1;
-      overflow-y: auto;
+    .card-details {
+      margin-top: 15px;
     }
-    .card-content h2 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      color: #014421;
-    }
-    .card-content p {
-      margin: 5px 0;
-    }
-    .close-btn {
-      display: block;
-      margin: 10px auto;
-      padding: 8px 16px;
-      background: #014421;
-      color: #fff;
+    .card-close {
+      background: #064420;
+      color: white;
       border: none;
+      padding: 6px 12px;
+      margin-top: 10px;
       cursor: pointer;
-      border-radius: 4px;
+      border-radius: 6px;
+    }
+
+    /* Stacked cards (for multiple results) */
+    .stacked {
+      transform: scale(0.9);
+      margin: 10px auto;
+      width: 90%;
+      transition: transform 0.3s ease;
+    }
+    .stacked:hover {
+      transform: scale(1);
     }
   </style>
 </head>
 <body>
   <header>Army Children High School Epe</header>
 
-  <!-- Members Button -->
-  <button class="btn" id="membersBtn" data-tooltip="Click to view members">Members List</button>
-
-  <!-- Search Box -->
-  <div class="search-box" id="searchBox">
-    <input type="text" id="searchInput" placeholder="Search by name or country...">
+  <!-- Search -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search members by name or country...">
   </div>
+
+  <!-- Button -->
+  <button class="members-btn" id="membersBtn" title="Click to view members">Members List</button>
 
   <!-- Members List -->
   <div id="membersContainer">
-    <div class="close-list" onclick="closeMembers()">Close Members List</div>
+    <button class="list-close" onclick="closeMembers()">Close</button>
     <ul id="memberList"></ul>
   </div>
 
   <!-- Member Card -->
   <div id="memberCard">
-    <img id="memberImg" src="" alt="Member">
-    <div class="card-content">
+    <img id="memberImg" src="" alt="">
+    <div class="card-details">
       <h2 id="memberName"></h2>
       <p><strong>Occupation:</strong> <span id="memberOccupation"></span></p>
       <p><strong>Position:</strong> <span id="memberPosition"></span></p>
       <p><strong>Marital Status:</strong> <span id="memberMarital"></span></p>
       <p><strong>Country:</strong> <span id="memberCountry"></span></p>
-      <button class="close-btn" onclick="closeMemberCard()">Close</button>
+      <button class="card-close" onclick="closeMemberCard()">Close</button>
     </div>
   </div>
 
   <script>
-    /* ==== Members Data ==== */
+    /* Sample Members */
     let MEMBERS = [
-      { rank: "President", name: "Jane Doe", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop", occupation: "Project Manager", position: "President", marital: "Married", country: "Nigeria" },
-      { rank: "Vice President", name: "Michael Smith", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop", occupation: "Engineer", position: "Vice President", marital: "Single", country: "UK" },
-      { rank: "General Secretary", name: "Aisha Bello", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop", occupation: "Lawyer", position: "General Secretary", marital: "Married", country: "USA" },
-      { rank: "Financial Sec.", name: "John Okafor", img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1200&auto=format&fit=crop", occupation: "Accountant", position: "Financial Secretary", marital: "Married", country: "Canada" },
-      { rank: "Welfare", name: "Mary Johnson", img: "https://images.unsplash.com/photo-1552226028-6c58f4f5c9f0?q=80&w=1200&auto=format&fit=crop", occupation: "Nurse", position: "Welfare Officer", marital: "Single", country: "Nigeria" }
+      { rank: "President", name: "Jane Doe", img: "https://picsum.photos/600/400?1", occupation: "Project Manager", position: "President", marital: "Married", country: "Nigeria" },
+      { rank: "Vice President", name: "Michael Smith", img: "https://picsum.photos/600/400?2", occupation: "Engineer", position: "Vice President", marital: "Single", country: "UK" },
+      { rank: "General Secretary", name: "Aisha Bello", img: "https://picsum.photos/600/400?3", occupation: "Lawyer", position: "Secretary", marital: "Married", country: "USA" },
+      { rank: "Financial Sec.", name: "John Okafor", img: "https://picsum.photos/600/400?4", occupation: "Accountant", position: "Financial Secretary", marital: "Married", country: "Canada" },
+      { rank: "Welfare", name: "Mary Johnson", img: "https://picsum.photos/600/400?5", occupation: "Nurse", position: "Welfare Officer", marital: "Single", country: "Nigeria" }
     ];
 
-    const membersBtn = document.getElementById("membersBtn");
-    const searchBox = document.getElementById("searchBox");
+    const listEl = document.getElementById("memberList");
     const containerEl = document.getElementById("membersContainer");
     const cardEl = document.getElementById("memberCard");
-    const listEl = document.getElementById("memberList");
 
     const imgEl = document.getElementById("memberImg");
     const nameEl = document.getElementById("memberName");
@@ -242,22 +197,29 @@
     const posEl = document.getElementById("memberPosition");
     const marEl = document.getElementById("memberMarital");
     const ctyEl = document.getElementById("memberCountry");
+    const searchEl = document.getElementById("searchInput");
 
-    function renderList(items) {
+    function renderList(members) {
       listEl.innerHTML = "";
-      items.forEach((m, i) => {
+      members.forEach((m, idx) => {
         const li = document.createElement("li");
         li.className = "member-item";
-        li.textContent = `${m.rank}: ${m.name} (${m.country})`;
-        li.onclick = () => showMember(i, items);
+        li.textContent = `${m.rank} — ${m.name}`;
+        li.addEventListener("click", () => showMember(m));
         listEl.appendChild(li);
       });
     }
 
-    function showMember(index, source = MEMBERS) {
-      const m = source[index];
+    function openMembers() {
+      containerEl.classList.add("show");
+    }
+
+    function closeMembers() {
+      containerEl.classList.remove("show");
+    }
+
+    function showMember(m) {
       imgEl.src = m.img;
-      imgEl.alt = m.name;
       nameEl.textContent = m.name;
       occEl.textContent = m.occupation;
       posEl.textContent = m.position;
@@ -270,29 +232,41 @@
 
     function closeMemberCard() {
       cardEl.classList.remove("show");
-      setTimeout(() => { containerEl.classList.add("show"); }, 100);
+      // list stays hidden unless user reopens via button
     }
 
-    function closeMembers() {
-      containerEl.classList.remove("show");
-      searchBox.classList.remove("show");
-    }
-
-    // Button click -> show search + list
-    membersBtn.onclick = () => {
-      searchBox.classList.add("show");
-      containerEl.classList.add("show");
-      renderList(MEMBERS);
-    };
+    // Trigger members list
+    document.getElementById("membersBtn").addEventListener("click", openMembers);
 
     // Search filter
-    document.getElementById("searchInput").addEventListener("input", (e) => {
-      const q = e.target.value.toLowerCase();
-      const filtered = MEMBERS.filter(m =>
-        m.name.toLowerCase().includes(q) || m.country.toLowerCase().includes(q)
+    searchEl.addEventListener("input", () => {
+      const query = searchEl.value.toLowerCase();
+      const matches = MEMBERS.filter(m => 
+        m.name.toLowerCase().includes(query) || 
+        m.country.toLowerCase().includes(query)
       );
-      renderList(filtered);
+      if (matches.length === 1) {
+        showMember(matches[0]);
+      } else if (matches.length > 1) {
+        // stack results
+        listEl.innerHTML = "";
+        matches.forEach(m => {
+          const div = document.createElement("div");
+          div.className = "stacked";
+          div.innerHTML = `
+            <img src="${m.img}" style="width:100%;border-radius:10px;">
+            <h3>${m.name}</h3>
+            <p>${m.country}</p>
+          `;
+          div.addEventListener("click", () => showMember(m));
+          listEl.appendChild(div);
+        });
+        openMembers();
+      }
     });
+
+    // initial render
+    renderList(MEMBERS);
   </script>
 </body>
 </html>
