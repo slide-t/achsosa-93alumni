@@ -1,53 +1,41 @@
-const CACHE_NAME = 'achsosa-cache-v1';
-const ASSETS_TO_CACHE = [
-  '/',
+// sw.js — Modern auto-updating with Offline Fallback
+
+const CACHE_NAME = 'dynamic-cache';
+
+// Files to precache (include only critical + offline page)
+const PRECACHE_ASSETS = [
+  '/',              
   '/index.html',
-  '/gallery.html',
-  '/footer.html',        // pre-cache footer
   '/css/style.css',
   '/js/script.js',
-  '/alumni.html',
-  '/members.html',
-  '/json/gallery.json',
   '/images/favicon-32x32.png',
-  '/images/achsosa2.jpg',
-  '/images/achsosa3.jpg',
-  '/images/achsosa7.jpg',
-  '/images/slide4.jpg',
-  '/images/slide5.jpg',
-  // add any other assets you want cached
+  '/offline.html'   // fallback page
 ];
 
-// Install event – cache all assets
+// Install: Precache essential assets
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(ASSETS_TO_CACHE))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_ASSETS))
   );
+  self.skipWaiting();
 });
 
-// Activate event – clean old caches
+// Activate: Clean old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) return caches.delete(key);
-        })
-      )
+      Promise.all(keys.map(key => key !== CACHE_NAME && caches.delete(key)))
     )
   );
   self.clients.claim();
 });
 
-// Fetch event – cache with network update (stale-while-revalidate)
+// Fetch: Stale-while-revalidate with offline fallback
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       const fetchPromise = fetch(event.request)
         .then(networkResponse => {
-          // Update cache with latest response
           if (networkResponse && networkResponse.status === 200) {
             caches.open(CACHE_NAME).then(cache => {
               cache.put(event.request, networkResponse.clone());
@@ -55,14 +43,14 @@ self.addEventListener('fetch', event => {
           }
           return networkResponse;
         })
-        .catch(() => null); // fallback if offline
+        .catch(() => {
+          // If request fails and no cache available → show offline.html (for navigation)
+          if (event.request.mode === 'navigate') {
+            return caches.match('/offline.html');
+          }
+          return cachedResponse;
+        });
 
-      // Always serve footer.html from network if available, else fallback to cache
-      if (event.request.url.endsWith('footer.html')) {
-        return fetchPromise.then(resp => resp || cachedResponse);
-      }
-
-      // For other assets: serve cache first, update in background
       return cachedResponse || fetchPromise;
     })
   );
