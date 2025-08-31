@@ -1,18 +1,20 @@
-async function loadComponent(containerId, filePath, fallback) {
+async function loadHeader() {
   try {
-    const response = await fetch(filePath, { cache: "no-store" });
-    if (!response.ok) throw new Error(`${filePath} not found`);
-    const html = await response.text();
-    document.getElementById(containerId).innerHTML = html;
+    const response = await fetch("header.html", { cache: "no-store" });
+    if (!response.ok) throw new Error("Header not found");
+    const headerHTML = await response.text();
+    document.body.insertAdjacentHTML("afterbegin", headerHTML);
+
+    // highlight active link
+    const current = window.location.pathname.split("/").pop();
+    document.querySelectorAll("#navLinks a").forEach(link => {
+      if (link.getAttribute("href") === current) {
+        link.classList.add("active");
+      }
+    });
   } catch (error) {
-    console.error(`Error loading ${filePath}:`, error);
-    document.getElementById(containerId).innerHTML = fallback;
+    console.error("Error loading header:", error);
   }
 }
 
-function loadLayout() {
-  loadComponent("header-container", "header.html", "<header><p>Header unavailable</p></header>");
-  loadComponent("footer-container", "footer.html", "<footer><p>Footer unavailable</p></footer>");
-}
-
-document.addEventListener("DOMContentLoaded", loadLayout);
+loadHeader();
