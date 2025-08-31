@@ -12,6 +12,7 @@ const PRECACHE_ASSETS = [
   '/header.html',
   'layout.js',
   'members.html',
+  'footer.html',
   'gallery.html',
   '/offline.html'   // fallback page
 ];
