@@ -114,10 +114,40 @@
       margin-bottom:8px;
     }
     .members-header h2{margin:8px 0; font-size:20px; color:var(--green)}
-    .members-search{flex:1}
+    /*.members-search{flex:1}
     .members-search input{
       width:100%; padding:10px 12px; border-radius:10px; border:1px solid #e5e7eb; outline:none;
-    }
+    }*/
+    .members-search {
+  flex: 1;
+  position: relative;
+}
+
+.members-search input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  transition: all 0.3s ease; /* smooth animation */
+}
+
+/* On focus - expand width, change border + shadow */
+.members-search input:focus {
+  border-color: green;
+  box-shadow: 0 0 6px rgba(0, 128, 0, 0.4);
+  transform: scale(1.02); /* slight zoom effect */
+}
+
+/* Optional - animate placeholder fade */
+.members-search input::placeholder {
+  color: #aaa;
+  transition: opacity 0.3s ease;
+}
+
+.members-search input:focus::placeholder {
+  opacity: 0.6;
+}
 
     .member-list{
       list-style:none; margin:8px 0 0; padding:0;
