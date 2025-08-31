@@ -9,6 +9,10 @@ const PRECACHE_ASSETS = [
   '/css/style.css',
   '/js/script.js',
   '/images/favicon-32x32.png',
+  '/header.html',
+  'layout.js',
+  'members.html',
+  'gallery.html',
   '/offline.html'   // fallback page
 ];
 
