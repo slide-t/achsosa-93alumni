@@ -1,9 +1,9 @@
 [
   {
-    "id": "john",
-    "name": "John Doe",
-    "img": "https://via.placeholder.com/180/006400/ffffff?text=John",
-    "occupation": "Software Engineer",
+    "id": "President",
+    "name": "Adewale Taiwo Rasaq",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
+    "occupation": "Civil Servant",
     "position": "Team Lead at Andela",
     "marital": "Married",
     "country": "Nigeria"
@@ -11,7 +11,7 @@
   {
     "id": "mary",
     "name": "Mary Johnson",
-    "img": "https://via.placeholder.com/180/006400/ffffff?text=Mary",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
     "occupation": "Nurse",
     "position": "Head Nurse at NHS",
     "marital": "Single",
@@ -29,7 +29,7 @@
   {
     "id": "amina",
     "name": "Amina Bello",
-    "img": "https://via.placeholder.com/180/006400/ffffff?text=Amina",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
     "occupation": "Teacher",
     "position": "Principal at Maple Academy",
     "marital": "Widowed",
