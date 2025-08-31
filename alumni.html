@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="style.css"/>
   <style>
-    /* === Global Styles === */
+    /* === Global Styles === *
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -15,12 +15,12 @@
       color: #333;
     }
 
-    /* === Navbar === */
+    /* === Navbar === *
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #006400; /* Green background */
+      background: #006400; /* Green background *
       color: #fff;
       padding: 10px 15px;
       position: sticky;
@@ -65,7 +65,7 @@
       cursor: pointer;
     }
 
-    /* === Mobile Menu === */
+    /* === Mobile Menu === *
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -139,7 +139,7 @@
 </head>
 <body>
 
-  <!-- Header -->
+
   <header>
     <div class="logo">
       <img src="https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png" alt="ACHSOSA Logo" class="logo-img">
@@ -147,15 +147,18 @@
     </div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="#">About Us</a>
+      <a href="#">Home</a>
+      <a href="about.html">About</a>
       <a href="#">Projects</a>
       <a href="#">Events</a>
       <a href="gallery.html">Gallery</a>
-      <a href="alumni.html">Alumni Registration</a>
       <a href="#">Contact</a>
+      <a href="members.html">Members</a>
+      <a href="https://edukids-africa.blogspot.com/p/edukids-africa-v2.html" target="_blank">Students Quiz</a>
     </nav>
   </header>
+
+  
 
   <!-- Registration Form -->
   <section class="section">
@@ -189,10 +192,10 @@
   <!-- Scripts -->
   <script>
     // Toggle Mobile Menu
-    function toggleMenu() {
+  /*  function toggleMenu() {
       const nav = document.getElementById("navLinks");
       nav.classList.toggle("show");
-    }
+    }*/
 
     // Populate graduation year dynamically
     const gradSelect = document.getElementById("graduationYear");
@@ -221,6 +224,6 @@
   }
 </script>
 
-  <script src="footer.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
