@@ -1,38 +1,56 @@
 [
   {
-    "id": "President",
+    "id": "Taiwo",
     "name": "Adewale Taiwo Rasaq",
     "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
     "occupation": "Civil Servant",
-    "position": "Team Lead at Andela",
+    "position": "Asst. H.O.D",
     "marital": "Married",
     "country": "Nigeria"
   },
   {
-    "id": "Vice President",
+    "id": "Jide",
     "name": "Odupe Olajide",
     "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
     "occupation": "Architect",
-    "position": "Head Nurse at NHS",
-    "marital": "Single",
-    "country": "UK"
-  },
-  {
-    "id": "sam",
-    "name": "Sam Okoro",
-    "img": "https://via.placeholder.com/180/006400/ffffff?text=Sam",
-    "occupation": "Businessman",
-    "position": "CEO of Okoro Holdings",
+    "position": "Vice President",
     "marital": "Married",
-    "country": "USA"
+    "country": "Nigeria"
   },
   {
-    "id": "amina",
-    "name": "Amina Bello",
+    "id": "Sherifat",
+    "name": "Sherifat Bello Mrs.",
     "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
-    "occupation": "Teacher",
-    "position": "Principal at Maple Academy",
-    "marital": "Widowed",
-    "country": "Canada"
+    "occupation": "Educator",
+    "position": "Secretary",
+    "marital": "Married",
+    "country": "Nigeria"
+  },
+  {
+    "id": "Luqmon",
+    "name": "Dr. Salami Luqmon",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/luqmon.jpg",
+    "occupation": "Civil Servant",
+    "position": "Fin. Secretary",
+    "marital": "Married",
+    "country": "Nigeria"
+  },
+  {
+    "id": "Azeez",
+    "name": "Alimi Azeez Olajide.",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/azeez.png",
+    "occupation": "Software Engineer",
+    "position": "P.R.O",
+    "marital": "Married",
+    "country": "Nigeria"
+  },
+  {
+    "id": "Yetunde",
+    "name": "Alasinbo Yetunde A.",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
+    "occupation": "Banker",
+    "position": "Welfare Director",
+    "marital": "Married",
+    "country": "Nigeria"
   }
 ]
