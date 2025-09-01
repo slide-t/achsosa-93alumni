@@ -1,96 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ACHSOSA '93 Alumni Blog Post</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>ACHSOSA '93 Alumni Blog</title>
   <style>
-   /* body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }*/
-    .post-container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    .post-container img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; }
-    h1 { margin-top: 20px; }
-    p { line-height: 1.6; color: #333; }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #001219;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .post-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #001219;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .back-btn:hover {
+      background: #005f73;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png" alt="ACHSOSA Logo" class="logo-img">
-      ACHSOSA '93 SET Blog Posts<i class="fas fa-graduation-cap"></i>
-    </div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="#">Projects</a>
-      <a href="#">Events</a>
-      <a href="blog.html">Blog</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="#">Contact</a>
-      <a href="members.html">Members</a>
-      <a href="#">SignUp</a>
-      <a href="https://edukids-africa.blogspot.com/p/edukids-africa-v2.html" target="_blank">Students Quiz</a>
-    </nav>
+    <h1>ACHSOSA '93 Alumni Blog</h1>
   </header>
-  <div class="post-container" id="post-container"></div>
+
+  <div class="container" id="post-container">
+    <h2>Loading...</h2>
+  </div>
 
   <script>
     async function loadPost() {
-      const params = new URLSearchParams(window.location.search);
-      const postId = params.get("id");
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get("id");
+
       const res = await fetch("blog-posts.json");
       const posts = await res.json();
+
       const post = posts.find(p => p.id == postId);
 
+      const container = document.getElementById("post-container");
+
       if (post) {
-        document.getElementById("post-container").innerHTML = `
-          <img src="${post.image}" alt="${post.title}">
+        container.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" class="post-image">
           <h1>${post.title}</h1>
-          <small>${post.date}</small>
+          <small><em>${post.date}</em></small>
           <p>${post.content}</p>
+          <a href="blog.html" class="back-btn">← Back to Blog</a>
         `;
       } else {
-        document.getElementById("post-container").innerHTML = `<p>Post not found.</p>`;
+        container.innerHTML = `<h2>Post not found</h2><a href="blog.html" class="back-btn">← Back</a>`;
       }
     }
     loadPost();
   </script>
-
-<!-- Place this where you want the footer -->
-  <div id="footer-container"></div>
-
-<script>
-async function loadFooter() {
-  try {
-    const response = await fetch('footer.html', {cache: 'no-store'});
-    if (!response.ok) throw new Error('Footer not found');
-    const footerHTML = await response.text();
-    document.getElementById('footer-container').innerHTML = footerHTML;
-  } catch (error) {
-    console.error('Error loading footer:', error);
-    // Optional fallback
-    document.getElementById('footer-container').innerHTML = '<footer><p>Footer unavailable</p></footer>';
-  }
-}
-
-loadFooter();
-</script>
-  
-  <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => {
-          console.log('Service Worker registered with scope:', reg.scope);
-        })
-        .catch(err => {
-          console.log('Service Worker registration failed:', err);
-        });
-    });
-  }
-</script>
-  
 </body>
 </html>
