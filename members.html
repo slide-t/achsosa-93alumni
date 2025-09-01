@@ -574,5 +574,25 @@
       containerEl.classList.add('show');
     })();
   </script>
+  <!-- Place this where you want the footer -->
+  <div id="footer-container"></div>
+
+<script>
+async function loadFooter() {
+  try {
+    const response = await fetch('footer.html', {cache: 'no-store'});
+    if (!response.ok) throw new Error('Footer not found');
+    const footerHTML = await response.text();
+    document.getElementById('footer-container').innerHTML = footerHTML;
+  } catch (error) {
+    console.error('Error loading footer:', error);
+    // Optional fallback
+    document.getElementById('footer-container').innerHTML = '<footer><p>Footer unavailable</p></footer>';
+  }
+}
+
+loadFooter();
+</script>
+  
 </body>
 </html>
