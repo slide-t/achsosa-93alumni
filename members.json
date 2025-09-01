@@ -71,7 +71,27 @@
     "position": "Treasurer",
     "marital": "Married",
     "country": "Nigeria"
+  },
+
+{
+    "id": "Ibrahim",
+    "name": "Ibrahim Jimoh",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
+    "occupation": "Educator",
+    "position": "AS",
+    "marital": "Married",
+    "country": "Nigeria"
+  },
+{
+    "id": "Kenneth",
+    "name": " Kenneth Cusmos",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
+    "occupation": "Educator",
+    "position": "AS",
+    "marital": "Married",
+    "country": "Nigeria"
   }
+
 
 
 
