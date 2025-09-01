@@ -703,81 +703,13 @@ loadFooter();
   </div>
 </div>
 
-<!-- Stage (hidden until access granted) -->
-<div class="stage" id="stage" style="display:none;">
-  <section class="members-container">
-    <div class="members-header">
-      <h2>Members</h2>
-      <div class="members-search">
-        <input type="search" placeholder="Search by name...">
-      </div>
-    </div>
-    <ul class="member-list">
-      <li>Member 1</li>
-      <li>Member 2</li>
-      <li>Member 3</li>
-    </ul>
-  </section>
-</div>
-
-<script>
-  const PASSWORD = "achsosa@93";
-  const overlay = document.getElementById("accessOverlay");
-  const stage = document.getElementById("stage");
-  const input = document.getElementById("accessPassword");
-  const errorMsg = document.getElementById("errorMsg");
-
-  // Access check
-  function checkAccess() {
-    if (input.value === PASSWORD) {
-      overlay.style.display = "none";
-      stage.style.display = "block";
-      resetInactivityTimer();
-    } else {
-      errorMsg.textContent = "Invalid password!";
-    }
-  }
-
-  // Auto-refresh after 30s of inactivity
-  let inactivityTimer;
-  function resetInactivityTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(() => {
-      location.reload();
-    }, 30000); // 30s
-  }
-  document.addEventListener("mousemove", resetInactivityTimer);
-  document.addEventListener("keydown", resetInactivityTimer);
-  document.addEventListener("touchstart", resetInactivityTimer);
-
-  // Prevent keyboard from covering input (mobile fix)
-  input.addEventListener("focus", () => {
-    setTimeout(() => {
-      input.scrollIntoView({behavior:"smooth", block:"center"});
-    }, 300);
-  });
-
-  // Disable right click
-  document.addEventListener("contextmenu", e => e.preventDefault());
-
-  // Block console shortcuts (basic)
-  document.addEventListener("keydown", e => {
-    if (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "s" || e.key === "S" || e.key === "i" || e.key === "I" || e.key === "j" || e.key === "J")) {
-      e.preventDefault();
-    }
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-  });
-</script>
-
 
 
 
 
 
   
-  <!-- Password Protection Modal --
+  <!-- Password Protection Modal -->
 <div id="passwordModal" class="password-modal">
   <div class="password-box">
     <h2>Enter Access Password</h2>
@@ -865,6 +797,6 @@ function checkPassword() {
   }
 }
 </script>
-  -->
+  
 </body>
 </html>
