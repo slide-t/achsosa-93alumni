@@ -131,5 +131,34 @@ loadFooter();
 
 
 <script src="script.js"></script> 
+<section>
+  <h2>Latest Updates</h2>
+  <div id="latest-posts" class="blog-container"></div>
+</section>
+
+<script>
+  async function loadLatestPosts() {
+    const res = await fetch("blog-posts.json");
+    const posts = await res.json();
+    const latest = posts.slice(-2).reverse(); // get last 2 posts
+
+    const container = document.getElementById("latest-posts");
+    latest.forEach(post => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${post.image}" alt="${post.title}">
+        <div class="card-content">
+          <h2>${post.title}</h2>
+          <p>${post.content.substring(0, 80)}...</p>
+          <a href="blog-posts.html?id=${post.id}">Read More</a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+  loadLatestPosts();
+</script>
+  
 </body>
 </html>
