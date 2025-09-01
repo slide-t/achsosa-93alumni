@@ -52,5 +52,28 @@
     "position": "Welfare Director",
     "marital": "Married",
     "country": "Nigeria"
+  },
+{
+    "id": "Kemi",
+    "name": "Oluwakemi Ojoare",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
+    "occupation": "Business Tycoon",
+    "position": "AS",
+    "marital": "Married",
+    "country": "Nigeria"
+  },
+
+{
+    "id": "Wunmmie",
+    "name": "Omowunmi Mrs.",
+    "img": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
+    "occupation": "Civil Servant",
+    "position": "Treasurer",
+    "marital": "Married",
+    "country": "Nigeria"
   }
+
+
+
+  
 ]
