@@ -159,6 +159,61 @@ loadFooter();
   }
   loadLatestPosts();
 </script>
-  
+  <style>
+    /* === Blog Container === */
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.blog-post {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+}
+
+.blog-post img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 1rem;
+}
+
+.blog-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #001219; /* Your brand color */
+}
+
+.blog-content p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #555;
+}
+
+.blog-content a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #0077cc;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.blog-content a:hover {
+  color: #005fa3;
+}
+  </style>
 </body>
 </html>
