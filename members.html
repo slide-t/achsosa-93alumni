@@ -164,93 +164,90 @@
     .member-name{font-weight:600}
     .member-meta{color:var(--muted); font-size:13px}
 
-/* Detail card */
+
+    
+/* New card css starts here*/
+
 .member-card {
-  position: absolute; 
-  inset: 0;
-  display: flex; 
-  justify-content: center; 
+  display: none; /* Hidden until triggered */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
   align-items: center;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateX(100%) rotateY(-15deg);
-  transform-origin: right center;
-  transition: transform .45s ease, opacity .45s ease;
-  padding: 18px;
-}
-.member-card.show {
-  opacity: 1; 
-  transform: translateX(0) rotateY(0); 
-  pointer-events: auto;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .card {
-  width: min(680px, 92vw);
-  height: 700px;   /* 🔥 Fixed same height */
-  background: #fff; 
-  border-radius: var(--radius); 
-  box-shadow: var(--shadow);
-  overflow: hidden; 
   position: relative;
-  display: flex; 
+  display: flex;
   flex-direction: column;
-}
-
-.card .close-btn {
-  position: absolute; 
-  top: 12px; 
-  right: 12px;
-  border: 0; 
-  background: rgba(0,0,0,.4); 
-  color: #fff; 
-  padding: 6px 10px; 
+  background: #fff;
+  width: 90%;
+  max-width: 800px;
   border-radius: 10px;
-  cursor: pointer; 
-  font-weight: 700;
+  overflow: hidden;
 }
 
-.card img {
-  width: 100%; 
-  height: 350px;   /* 🔥 Keeps all images equal */
-  object-fit: cover; 
-  display: block;
-  background: #e5e7eb;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+/* Flex layout for image + details */
+.card-content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.card-img {
+  flex: 1;
+  max-width: 40%;
+  overflow: hidden;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* keeps aspect ratio, fills container */
 }
 
 .card-body {
-  flex: 1;   /* 🔥 Makes body stretch evenly */
-  padding: 16px 18px 20px;
-  display: flex; 
-  flex-direction: column;
-  justify-content: space-between;
+  flex: 2;
+  padding: 20px;
+  overflow-y: auto;
 }
 
-.card-body h3 {
-  margin: 0 0 6px; 
-  color: var(--green);
-}
-.detail {
-  margin: 6px 0; 
-  font-size: 15px;
-}
-.detail strong {
-  color: #374151;
-}
-
-/* Responsive tweaks */
+/* Responsive (stack on smaller screens) */
 @media (max-width: 768px) {
-  .member-item {padding: 12px}
-  .member-rank {min-width: 94px; font-size: 14px}
-  .card {
-    height: 500px;   /* 🔥 Uniform height for mobile */
+  .card-content {
+    flex-direction: column;
   }
-  .card img {
-    height: 220px;   /* 🔥 Image scales down */
+  .card-img {
+    max-width: 100%;
+    height: 200px;
+  }
+  .card-img img {
+    height: 100%;
+    width: 100%;
   }
 }
 
+    /* stop*/
     
-    /* Detail card /
+/* Detail card *
 .member-card {
   position: absolute; 
   inset: 0;
@@ -297,7 +294,7 @@
 
 .card img {
   width: 100%; 
-  height: 350px;   /* 🔥 Keeps all images equal /
+  height: 350px;   /* 🔥 Keeps all images equal *
   object-fit: cover; 
   display: block;
   background: #e5e7eb;
@@ -323,89 +320,49 @@
   color: #374151;
 }
 
-/* Responsive tweaks */
+/* Responsive tweaks *
 @media (max-width: 768px) {
   .member-item {padding: 12px}
   .member-rank {min-width: 94px; font-size: 14px}
   .card {
-    height: 500px;   /* 🔥 Uniform height for mobile */
+    height: 500px;   /* 🔥 Uniform height for mobile *
   }
   .card img {
     height: 220px;   /* 🔥 Image scales down */
   }
 }
-    
-    
-    
-    
-    /* Detail card *
-.member-card {
-  position: absolute; inset: 0;
-  display: flex; justify-content: center; align-items: center;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateX(100%) rotateY(-15deg);
-  transform-origin: right center;
-  transition: transform .45s ease, opacity .45s ease;
-  padding: 18px;
-}
-.member-card.show {
-  opacity: 1; transform: translateX(0) rotateY(0); pointer-events: auto;
-}
 
-.card {
-  width: min(680px, 92vw);
-  background: #fff; 
-  border-radius: var(--radius); 
-  box-shadow: var(--shadow);
-  overflow: hidden; 
-  position: relative;
-  min-height: 700px;   /* 👈 make card taller *
-  display: flex; 
-  flex-direction: column;
-}
+ /* Ends here*/   
 
-.card .close-btn {
-  position: absolute; top: 12px; right: 12px;
-  border: 0; background: rgba(0,0,0,.4); color: #fff; 
-  padding: 6px 10px; border-radius: 10px;
-  cursor: pointer; font-weight: 700;
-}
-
-.card img {
-  width: 100%; 
-  height: auto;            /* 👈 allow natural height *
-  max-height: 500px;       /* 👈 keep it neat *
-  object-fit: cover; 
-  display: block;
-  background: #e5e7eb;
-}
-
-.card-body {
-  padding: 16px 18px 20px;
-  flex: 1;                 /* 👈 body grows to fill remaining space 
-}
-.card-body h3 {margin: 0 0 6px; color: var(--green)}
-.detail {margin: 6px 0; font-size: 15px}
-.detail strong {color: #374151}
-
-/* Responsive tweaks */
+/* Responsive tweaks *
 @media (max-width: 768px) {
   .member-item {padding: 12px}
   .member-rank {min-width: 94px; font-size: 14px}
   .card {
-    min-height: 500px;   /* 👈 smaller card height for mobile */
+    height: 500px;   /* 🔥 Uniform height for mobile *
   }
   .card img {
-    max-height: 280px;   /* 👈 more space for text below */
+    height: 280px;   /* 🔥 Image scales down */
   }
 }
-    /* Responsive tweaks */
+    
+/* Responsive tweaks *
+@media (max-width: 768px) {
+  .member-item {padding: 12px}
+  .member-rank {min-width: 94px; font-size: 14px}
+  .card {
+    min-height: 500px;   /* 👈 smaller card height for mobile 
+  }
+  .card img {
+    max-height: 280px;   
+  }
+}
+    /* Responsive tweaks 
     @media (max-width: 768px){
       .member-item{padding:12px}
       .member-rank{min-width:94px; font-size:14px}
       .card img{height:240px}
-    }
+    }*/
   </style>
 </head>
 <body>
@@ -439,7 +396,26 @@
       <ul class="member-list" id="memberList"></ul>
     </section>
 
-    <!-- Detail Panel -->
+<!-- Detail Panel -->
+<section class="member-card" id="memberCard">
+  <div class="card">
+    <button class="close-btn" onclick="closeMemberCard()">Close</button>
+    <div class="card-content">
+      <div class="card-img">
+        <img id="memberImg" src="" alt="">
+      </div>
+      <div class="card-body">
+        <h3 id="memberName"></h3>
+        <p class="detail"><strong>Occupation:</strong> <span id="memberOccupation"></span></p>
+        <p class="detail"><strong>Current Position:</strong> <span id="memberPosition"></span></p>
+        <p class="detail"><strong>Marital Status:</strong> <span id="memberMarital"></span></p>
+        <p class="detail"><strong>Country:</strong> <span id="memberCountry"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+    
+    <!-- Detail Panel --
     <section class="member-card" id="memberCard">
       <div class="card">
         <button class="close-btn" onclick="closeMemberCard()">Close</button>
@@ -453,6 +429,7 @@
         </div>
       </div>
     </section>
+    -->
   </div>
 
   <script>
