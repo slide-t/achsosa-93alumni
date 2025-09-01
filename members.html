@@ -657,8 +657,66 @@ function checkPassword() {
   font-size: 14px;
 }
 </style>
-
 <script>
+const PASSWORD = "achsosa@93";
+const modal = document.getElementById("passwordModal");
+const input = document.getElementById("passwordInput");
+const errorMsg = document.getElementById("errorMsg");
+
+// Check if password already saved in localStorage
+window.addEventListener("load", () => {
+  if (localStorage.getItem("memberAccess") === PASSWORD) {
+    modal.style.display = "none"; // grant access immediately
+    resetInactivityTimer();
+  }
+});
+
+function checkPassword() {
+  if (input.value === PASSWORD) {
+    modal.style.display = "none"; // grant access
+    localStorage.setItem("memberAccess", PASSWORD); // save password
+    resetInactivityTimer();
+  } else {
+    errorMsg.textContent = "Incorrect password!";
+  }
+}
+
+// Prevent keyboard overlap (mobile fix)
+input.addEventListener("focus", () => {
+  setTimeout(() => {
+    input.scrollIntoView({behavior: "smooth", block: "center"});
+  }, 300);
+});
+
+// Auto-refresh after 30s inactivity
+let inactivityTimer;
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(() => {
+    location.reload();
+  }, 30000); // 30s
+}
+document.addEventListener("mousemove", resetInactivityTimer);
+document.addEventListener("keydown", resetInactivityTimer);
+document.addEventListener("touchstart", resetInactivityTimer);
+
+// Disable right click
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Block console shortcuts
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey && (e.key.toLowerCase() === "u" || e.key.toLowerCase() === "s" || e.key.toLowerCase() === "i" || e.key.toLowerCase() === "j")) {
+    e.preventDefault();
+  }
+  if (e.key === "F12") {
+    e.preventDefault();
+  }
+});
+</script>
+
+
+  
+<!--<script>
 const PASSWORD = "achsosa@93";
 const modal = document.getElementById("passwordModal");
 const input = document.getElementById("passwordInput");
@@ -704,6 +762,7 @@ document.addEventListener("keydown", e => {
     e.preventDefault();
   }
 });
-</script> 
+</script>
+  -->
 </body>
 </html>
