@@ -594,7 +594,190 @@ async function loadFooter() {
 loadFooter();
 </script>
   <script src="script.js"></script>
-  <!-- Password Protection Modal -->
+
+<style>
+  :root {
+    --overlay-bg: rgba(0,0,0,0.6);
+    --card-bg: rgba(255,255,255,0.15);
+    --card-border: rgba(255,255,255,0.3);
+  }
+
+  body,html {
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family:Arial, sans-serif;
+    background:#111;
+  }
+
+  /* Full screen overlay */
+  #accessOverlay {
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:var(--overlay-bg);
+    backdrop-filter: blur(6px);
+    z-index:9999;
+  }
+
+  /* Access card */
+  .access-box {
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:12px;
+    padding:24px;
+    width:90%;
+    max-width:320px;
+    text-align:center;
+    color:#fff;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+  }
+  .access-box h2 {
+    margin:0 0 16px;
+  }
+  .access-box input {
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    margin-bottom:12px;
+    font-size:1rem;
+  }
+  .access-box button {
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#00bfa6;
+    color:#fff;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.3s;
+  }
+  .access-box button:hover {
+    background:#009e89;
+  }
+
+  /* Members container */
+  .stage {
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    background:#222;
+    color:#fff;
+    overflow:hidden;
+  }
+  .members-container {
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    background:#333;
+    padding:14px;
+  }
+  .members-header { flex-shrink:0; }
+  .member-list {
+    flex:1;
+    overflow-y:auto;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .member-list li {
+    padding:10px;
+    border-bottom:1px solid #444;
+  }
+</style>
+</head>
+<body>
+
+<!-- Overlay -->
+<div id="accessOverlay">
+  <div class="access-box">
+    <h2>Enter Access Key</h2>
+    <input type="password" id="accessPassword" placeholder="Enter password...">
+    <button onclick="checkAccess()">Unlock</button>
+    <p id="errorMsg" style="color:#ff8080; font-size:0.9rem;"></p>
+  </div>
+</div>
+
+<!-- Stage (hidden until access granted) -->
+<div class="stage" id="stage" style="display:none;">
+  <section class="members-container">
+    <div class="members-header">
+      <h2>Members</h2>
+      <div class="members-search">
+        <input type="search" placeholder="Search by name...">
+      </div>
+    </div>
+    <ul class="member-list">
+      <li>Member 1</li>
+      <li>Member 2</li>
+      <li>Member 3</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+  const PASSWORD = "achsosa@93";
+  const overlay = document.getElementById("accessOverlay");
+  const stage = document.getElementById("stage");
+  const input = document.getElementById("accessPassword");
+  const errorMsg = document.getElementById("errorMsg");
+
+  // Access check
+  function checkAccess() {
+    if (input.value === PASSWORD) {
+      overlay.style.display = "none";
+      stage.style.display = "block";
+      resetInactivityTimer();
+    } else {
+      errorMsg.textContent = "Invalid password!";
+    }
+  }
+
+  // Auto-refresh after 30s of inactivity
+  let inactivityTimer;
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+      location.reload();
+    }, 30000); // 30s
+  }
+  document.addEventListener("mousemove", resetInactivityTimer);
+  document.addEventListener("keydown", resetInactivityTimer);
+  document.addEventListener("touchstart", resetInactivityTimer);
+
+  // Prevent keyboard from covering input (mobile fix)
+  input.addEventListener("focus", () => {
+    setTimeout(() => {
+      input.scrollIntoView({behavior:"smooth", block:"center"});
+    }, 300);
+  });
+
+  // Disable right click
+  document.addEventListener("contextmenu", e => e.preventDefault());
+
+  // Block console shortcuts (basic)
+  document.addEventListener("keydown", e => {
+    if (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "s" || e.key === "S" || e.key === "i" || e.key === "I" || e.key === "j" || e.key === "J")) {
+      e.preventDefault();
+    }
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
+  });
+</script>
+
+
+
+
+
+
+  
+  <!-- Password Protection Modal --
 <div id="passwordModal" class="password-modal">
   <div class="password-box">
     <h2>Enter Access Password</h2>
@@ -682,5 +865,6 @@ function checkPassword() {
   }
 }
 </script>
+  -->
 </body>
 </html>
