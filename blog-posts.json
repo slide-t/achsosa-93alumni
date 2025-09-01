@@ -1,17 +1,18 @@
 [
+  
   {
     "id": 1,
-    "title": "Welcome to ACHSOSA '93 Alumni Blog",
-    "date": "2025-08-30",
-    "image": "images/post1.jpg",
-    "content": "Our alumni community is growing stronger. This is the first welcome note to unite every member and keep us updated."
+    "title": "Welcome to ACHSOSA '93 Alumni",
+    "date": "2025-08-31",
+    "image": "https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png",
+    "content": "<p>The ACHSOSA ’93 Alumni Association is more than just a gathering of old classmates; it is a community built on shared values, memories, and a vision for the future. We are united not only by the years we spent together at our cherished Alma Mater but also by the strong desire to uplift one another and contribute positively to society.</p>\n\n<p><strong>Our Mission:</strong> To foster unity, support, and growth among members of the ACHSOSA ’93 set, while creating opportunities to give back to our communities and alma mater.</p>\n\n<p><strong>Our Vision:</strong> To be a recognized alumni body that champions education, professional excellence, and community development wherever we are in the world.</p>\n\n<p>Over the years, many of our members have gone on to achieve remarkable feats globally. From academics and engineering to business and humanitarian services, ACHSOSA ’93 alumni are shining lights. For example, one of our members is making an impact in the United States through healthcare services, while another is contributing to youth empowerment programs right here in Nigeria.</p>\n\n<p>These achievements remind us of the great foundation we built together and the importance of staying connected. Through outreach projects, mentorship, and financial support to deserving causes, ACHSOSA ’93 continues to live up to its name and spirit.</p>\n\n<p>To all our members, let us keep the bond alive. The strength of an alumni body lies in the active participation and commitment of its people. Together, we can achieve more and leave a lasting legacy for future generations.</p>\n\n<p><em>Welcome once again to ACHSOSA ’93 Alumni – where memories meet purpose.</em></p>"
   },
   {
     "id": 2,
-    "title": "Upcoming Reunion 2025",
+    "title": "Reflecting On Last Reunion 2025",
     "date": "2025-09-15",
     "image": "images/post2.jpg",
-    "content": "The ACHSOSA '93 reunion will take place this year. We are preparing activities, networking, and fun memories together."
+    "content": "The ACHSOSA '93 reunion 2025, has marked 31 year of our individual and collective journey form our days in school and beyond..."
   },
   {
     "id": 3,
