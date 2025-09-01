@@ -150,10 +150,48 @@ nav a:nth-child(6) { animation-delay: 0.6s; }
     padding: 1rem 0;
     gap: 0.5rem;
   }
+
+  nav.show { display: flex; }
+  .menu-toggle { display: block; }
+
+  nav a {
+    color: var(--text-color);   /* text black on white bg */
+    background: #f4f4f4;        /* button-like background */
+    width: 90%;                 /* almost full width */
+    margin: 0 auto;             /* center it */
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  nav a:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: scale(1.02);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  }
+}
+
+/* Mobile nav dropdown *
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    position: absolute;
+    top: 90px;
+    right: 0;
+    width: 100%;
+    padding: 1rem 0;
+    gap: 0.5rem;
+  }
   nav.show { display: flex; }
   .menu-toggle { display: block; }
   nav a { color: var(--text-color); } /* switch text color to black on white bg */
-}
+}*/
 
 /* === Collapsible Sections === */
 .section { padding: 2rem; border-bottom: 1px solid #ccc; }
