@@ -90,8 +90,6 @@
   <!-- Scroll to Top -->
   <button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
 
-<!-- Place this where you want the footer -->
-  <div id="footer-container"></div>
 
 <script>
 async function loadFooter() {
@@ -136,6 +134,8 @@ loadFooter();
   <div id="latest-posts" class="blog-container"></div>
 </section>
 
+<!-- Place this where you want the footer -->
+  <div id="footer-container"></div>
 <script>
   async function loadLatestPosts() {
     const res = await fetch("blog-posts.json");
