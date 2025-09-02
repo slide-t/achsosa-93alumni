@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EduBlog - Latest Posts</title>
   <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="style.css/>
 </head>
 <body>
   <header>
@@ -56,5 +57,38 @@
 
     loadPosts();
   </script>
+  <!-- Place this where you want the footer -->
+  <div id="footer-container"></div>
+
+<script>
+async function loadFooter() {
+  try {
+    const response = await fetch('footer.html', {cache: 'no-store'});
+    if (!response.ok) throw new Error('Footer not found');
+    const footerHTML = await response.text();
+    document.getElementById('footer-container').innerHTML = footerHTML;
+  } catch (error) {
+    console.error('Error loading footer:', error);
+    // Optional fallback
+    document.getElementById('footer-container').innerHTML = '<footer><p>Footer unavailable</p></footer>';
+  }
+}
+
+loadFooter();
+</script>
+  
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => {
+          console.log('Service Worker registered with scope:', reg.scope);
+        })
+        .catch(err => {
+          console.log('Service Worker registration failed:', err);
+        });
+    });
+  }
+</script>
 </body>
 </html>
