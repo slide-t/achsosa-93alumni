@@ -88,11 +88,38 @@ header h1 {
   color: #001219;
 }
 
-.blog-content p {
+/*.blog-content p {
   font-size: 0.95rem;
   color: #555;
+}*/
+/* ===== Blog Content & Excerpt Styling ===== */
+.excerpt {
+  font-size: 1.2rem;   /* slightly bigger for readability */
+  line-height: 1.6;
+  color: #444;
+  margin: 0.5rem 0 1rem;
+  font-style: italic;
+  text-align: justify;
 }
 
+.blog-content {
+  font-size: 1.1rem;   /* larger than normal paragraph */
+  line-height: 1.8;    /* more breathing room */
+  color: #222;
+  text-align: justify;
+  margin: 1rem 0;
+  transition: font-size 0.3s ease-in-out;
+}
+
+/* Optional: make font even larger on bigger screens */
+@media (min-width: 768px) {
+  .excerpt {
+    font-size: 1.3rem;
+  }
+  .blog-content {
+    font-size: 1.2rem;
+  }
+}
 .read-more {
   display: inline-block;
   margin-top: 10px;
