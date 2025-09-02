@@ -254,10 +254,6 @@
       <input type="text" id="searchInput" placeholder="Search articles...">
 </div>
   <div class="container" id="blog-container"></div>
-
-  <!-- Floating Home Button -->
-  <a href="index.html" class="home-btn" title="Home"><i class="fas fa-home"></i></a>
-
   <script>
     async function loadPosts() {
       const res = await fetch("blog-posts.json");
@@ -273,7 +269,7 @@
             <h2>${post.title}</h2>
             <p>${post.excerpt}</p>
           </div>
-          <a href="post.html?id=${index}" class="read-more">Read More</a>
+          <a href="blog-posts.html?id=${index}" class="read-more">Read More</a>
         `;
         container.appendChild(card);
       });
