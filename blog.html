@@ -260,7 +260,7 @@
 
   <script>
     async function loadPosts() {
-      const res = await fetch("posts.json");
+      const res = await fetch("blog-posts.json");
       const posts = await res.json();
       const container = document.getElementById("blog-container");
 
