@@ -177,4 +177,23 @@ header h1 {
 .share-btn:hover .tooltip {
   opacity: 1;
 }
-    
+ /* Reusable Back Button */
+.back-btn {
+  background: #001219;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background: #005f73;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+  }   
