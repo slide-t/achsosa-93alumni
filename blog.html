@@ -2,313 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- SEO Meta Tags -->
-<meta name="description" content="Welcome to ACHSOSA '93 Alumni Blog. Stay connected with alumni updates, events, community works, success stories, and inspiring news from members across the globe.">
-<meta name="keywords" content="ACHSOSA '93 Alumni, alumni network, community, education, charity, development, mentorship, inspiration, global impact, alumni events, success stories">
-<meta name="author" content="ACHSOSA '93 Alumni">
-
-<!-- Open Graph for Social Sharing -->
-<meta property="og:title" content="ACHSOSA '93 Alumni Blog - Updates, Events & Stories">
-<meta property="og:description" content="Explore inspiring stories, alumni achievements, events, and community projects from ACHSOSA '93 Alumni. Stay connected with our global family.">
-<meta property="og:image" content="https://raw.githubusercontent.com/achsosa-93alumni/main/images/alumni-banner.jpg">
-<meta property="og:type" content="website">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ACHSOSA '93 Alumni Blog - Updates, Events & Stories">
-<meta name="twitter:description" content="Stay updated with inspiring alumni stories, achievements, and events from ACHSOSA '93 Alumni community.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/achsosa-93alumni/main/images/alumni-banner.jpg">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "ACHSOSA '93 Alumni Blog",
-  "url": "https://achsosa-93alumni.github.io/",
-  "description": "Stay connected with ACHSOSA '93 Alumni through inspiring stories, achievements, community works, and events.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "ACHSOSA '93 Alumni",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://raw.githubusercontent.com/achsosa-93alumni/main/images/logo.png"
-    }
-  },
-  "blogPost": [
-    {
-      "@type": "BlogPosting",
-      "headline": "Welcome to ACHSOSA '93 Alumni",
-      "image": "https://raw.githubusercontent.com/achsosa-93alumni/main/images/welcome.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "ACHSOSA '93 Alumni"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "ACHSOSA '93 Alumni"
-      },
-      "datePublished": "2025-08-20",
-      "articleSection": "Introduction",
-      "keywords": ["alumni", "community", "achsosa", "global network"]
-    },
-    {
-      "@type": "BlogPosting",
-      "headline": "Alumni in Global Leadership",
-      "image": "https://raw.githubusercontent.com/achsosa-93alumni/main/images/leadership.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "ACHSOSA '93 Alumni"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "ACHSOSA '93 Alumni"
-      },
-      "datePublished": "2025-08-20",
-      "articleSection": "Leadership",
-      "keywords": ["alumni", "leaders", "global impact"]
-    },
-    {
-      "@type": "BlogPosting",
-      "headline": "Community Projects & Outreach",
-      "image": "https://raw.githubusercontent.com/achsosa-93alumni/main/images/community.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "ACHSOSA '93 Alumni"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "ACHSOSA '93 Alumni"
-      },
-      "datePublished": "2025-08-20",
-      "articleSection": "Community",
-      "keywords": ["charity", "education", "community development"]
-    }
-  ]
-}
-</script>
-
-<title>ACHSOSA '93 Alumni Blog</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
-<link rel="stylesheet" href="blog.css"/>
-  <link rel="stylesheet" href="style.css"/>
-  
-<style>
-  /*body {
-    font-family: Arial, sans-serif;
-    margin: 0; padding: 0;
-    background: #f4f4f4;
-  }
-*/
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-
-  /* Card base */
-  .card {
-    --delay: 0s;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .card.visible {
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: var(--delay);
-  }
-
-  .card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  }
-
-  .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .card:hover img {
-    transform: scale(1.05);
-  }
-
-  .card-content {
-    padding: 15px;
-    flex-grow: 1;
-  }
-
-  .card h2 {
-    font-size: 20px;
-    margin: 0 0 10px;
-    transition: color 0.3s ease;
-  }
-
-  .card:hover h2 {
-    color: #003049;
-  }
-
-  .card p {
-    font-size: 14px;
-    color: #555;
-  }
-
-  .read-more {
-    background: #001219;
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    text-align: center;
-    border-radius: 0 0 10px 10px;
-    transition: background 0.3s ease;
-  }
-
-  .read-more:hover {
-    background: #003049;
-  }
-
-  /*header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background: #001219;
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .header-right {
-    position: relative;
-  }
-
-  .search-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-    color: white;
-    transition: transform 0.3s ease;
-  }
-
-  .search-btn:hover {
-    transform: scale(1.2);
-  }
-
-  #searchInput {
-    position: absolute;
-    right: 0;
-    top: 120%;
-    width: 0;
-    opacity: 0;
-    padding: 8px;
-    border: 1px solid white;
-    border-radius: 5px;
-    outline: none;
-    background: #fff;
-    color: #000;
-    transition: all 0.4s ease-in-out;
-  }
-
-  #searchInput.active {
-    width: 220px;
-    opacity: 1;
-  }*/
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduBlog - Latest Posts</title>
+  <link rel="stylesheet" href="blog.css">
 </head>
-
 <body>
-    <header>
-    <div class="logo">
-      <img src="https://raw.githubusercontent.com/slide-t/achsosa-93alumni/main/images/logo.png" alt="ACHSOSA Logo" class="logo-img">
-      ACHSOSA '93 SET <i class="fas fa-graduation-cap"></i>
+  <header>
+    <h1>EduBlog</h1>
+    <div class="search-container">
+      <input type="text" id="search" class="search-box" placeholder="Search posts...">
     </div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav id="navLinks">
-      <a href="#">Home</a>
-      <a href="about.html">About</a>
-      <a href="#">Projects</a>
-      <a href="#">Events</a>
-      <a href="blog.html">Blog</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="#">Contact</a>
-      <a href="members.html">Members</a>
-      <a href="#">SignUp</a>
-      <a href="https://edukids-africa.blogspot.com/p/edukids-africa-v2.html" target="_blank">Students Quiz</a>
-    </nav>
   </header>
-<div class="header-right">
-      <button id="searchToggle" class="search-btn">🔍</button>
-      <input type="text" id="searchInput" placeholder="Search articles...">
-</div>
-  <div class="container" id="blog-container"></div>
+
+  <section>
+    <div id="blog-container" class="blog-container"></div>
+  </section>
+
   <script>
     async function loadPosts() {
-      const res = await fetch("blog-posts.json");
+      const res = await fetch("blog.json");
       const posts = await res.json();
       const container = document.getElementById("blog-container");
+      const searchInput = document.getElementById("search");
 
-      posts.forEach((post, index) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${post.image}" alt="${post.title}">
-          <div class="card-content">
-            <h2>${post.title}</h2>
-            <p>${post.excerpt}</p>
-          </div>
-          <a href="blog-posts.html?id=${index}" class="read-more">Read More</a>
-        `;
-        container.appendChild(card);
+      function render(postsToRender) {
+        container.innerHTML = "";
+        postsToRender.forEach(post => {
+          const card = document.createElement("div");
+          card.className = "blog-card";
+          card.innerHTML = `
+            <img src="${post.image}" alt="${post.title}">
+            <div class="blog-content">
+              <h3>${post.title}</h3>
+              <p>${post.excerpt}</p>
+              <a href="blog-post.html?id=${post.id}" class="read-more">Read More</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      render(posts);
+
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.toLowerCase();
+        const filtered = posts.filter(p => 
+          p.title.toLowerCase().includes(query) ||
+          p.excerpt.toLowerCase().includes(query)
+        );
+        render(filtered);
       });
     }
+
     loadPosts();
   </script>
-<!-- Place this where you want the footer -->
-  <div id="footer-container"></div>
-
-<script>
-async function loadFooter() {
-  try {
-    const response = await fetch('footer.html', {cache: 'no-store'});
-    if (!response.ok) throw new Error('Footer not found');
-    const footerHTML = await response.text();
-    document.getElementById('footer-container').innerHTML = footerHTML;
-  } catch (error) {
-    console.error('Error loading footer:', error);
-    // Optional fallback
-    document.getElementById('footer-container').innerHTML = '<footer><p>Footer unavailable</p></footer>';
-  }
-}
-
-loadFooter();
-</script>
-  
-  <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => {
-          console.log('Service Worker registered with scope:', reg.scope);
-        })
-        .catch(err => {
-          console.log('Service Worker registration failed:', err);
-        });
-    });
-  }
-</script>
-  <script src="script.js"></script>
 </body>
 </html>
