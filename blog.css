@@ -135,3 +135,46 @@ header h1 {
   color: #444;
   line-height: 1.7;
 }
+/* Floating Share Button */
+.share-btn {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #0077ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: background 0.3s ease;
+  z-index: 1000;
+}
+
+.share-btn:hover {
+  background: #005dc1;
+}
+
+/* Tooltip */
+.share-btn .tooltip {
+  position: absolute;
+  left: -60px;
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.share-btn:hover .tooltip {
+  opacity: 1;
+}
+    
