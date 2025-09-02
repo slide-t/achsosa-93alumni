@@ -13,6 +13,7 @@ const PRECACHE_ASSETS = [
   'post.json',
   'blog-post.html',
   'blog.html',
+  'blog.json',
   'blog.css',
   'members.html',
   'footer.html',
